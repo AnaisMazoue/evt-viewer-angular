@@ -1,7 +1,7 @@
 {
   "editionTitle": "My Digital Edition",
   "badge": "alpha",
-  "editionHome": "{{ url_for('home')}}",
+  "editionHome": "http://127.0.0.1:5000/",
   "availableEditionLevels": [
     {
       "id": "diplomatic",
@@ -110,7 +110,7 @@
     "type=orthographic"
   ],
   "defaultEdition": "critical",
-  "defaultViewMode": "collation",
+  "defaultViewMode": "imageText",
   "proseVersesToggler": true,
   "defaultTextFlow": "prose",
   "verseNumberPrinter": 5,

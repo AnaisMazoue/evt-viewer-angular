@@ -1,0 +1,5144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  DTD generated from ODD source 2024-10-21T08:39:20Z. .TEI material can be licensed differently depending on the use you intend to make of it. Hence it is made available under both the CC+BY and BSD-2 licences. The CC+BY licence is generally appropriate for usages which treat TEI content as data or documentation. The BSD-2 licence is generally appropriate for usage of TEI content in a software environment. For further information or clarification, please contact the TEI Consortium (info@tei-c.org).
+  TEI Edition: P5 Version 4.8.0. Last updated on 8th July 2024, revision 1f9891a87 
+  TEI Edition Location: https://www.tei-c.org/Vault/P5/4.8.0/
+  
+-->
+<!-- start datatypes -->
+<grammar xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:tei="http://www.tei-c.org/ns/1.0"
+  xmlns:teix="http://www.tei-c.org/ns/Examples"
+  xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+  xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://relaxng.org/ns/structure/1.0"
+  datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" ns="http://www.tei-c.org/ns/1.0">
+
+
+
+  <define name="teidata.numeric">
+    <data type="string" datatypeLibrary=""/>
+  </define>
+  <define name="teidata.count">
+    <data type="string" datatypeLibrary=""/>
+  </define>
+  <define name="teidata.temporal.w3c">
+    <data type="string" datatypeLibrary=""/>
+  </define>
+  <define name="teidata.truthValue">
+    <data type="string" datatypeLibrary=""/>
+  </define>
+  <define name="teidata.language">
+    <data type="string" datatypeLibrary=""/>
+  </define>
+  <define name="teidata.outputMeasurement">
+    <data type="string" datatypeLibrary=""/>
+  </define>
+  <define name="teidata.pattern">
+    <data type="string" datatypeLibrary=""/>
+  </define>
+  <define name="teidata.pointer">
+    <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(reference)
+      provides an explicit means of locating a full definition or identity for the entity being
+      named by means of one or more URIs.</a:documentation>
+    <list>
+      <oneOrMore>
+        <data type="anyURI">
+          <param name="pattern">\S+</param>
+        </data>
+      </oneOrMore>
+    </list>
+  </define>
+  <define name="teidata.version">
+    <data type="string" datatypeLibrary=""/>
+  </define>
+  <define name="teidata.versionNumber">
+    <data type="string" datatypeLibrary=""/>
+  </define>
+  <define name="teidata.replacement">
+    <data type="string" datatypeLibrary=""/>
+  </define>
+  <define name="teidata.xpath">
+    <data type="string" datatypeLibrary=""/>
+  </define>
+  <define name="teidata.text">
+    <data type="string" datatypeLibrary=""/>
+  </define>
+  <define name="teidata.name">
+    <data type="string" datatypeLibrary=""/>
+  </define>
+  <define name="teidata.xmlName">
+    <data type="string" datatypeLibrary=""/>
+  </define>
+  <define name="teidata.temporal.iso">
+    <data type="string" datatypeLibrary=""/>
+  </define>
+  <!-- end datatypes -->
+  <!-- predeclared classes -->
+  <define name="tei_att.global.rendition.attribute.rend">
+    <optional>
+      <attribute name="rend">
+        <choice>
+          <value>it</value>
+          <value>capitals</value>
+          <value>normal</value>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
+  <define name="tei_att.global.rendition.attributes">
+    <ref name="tei_att.global.rendition.attribute.rend"/>
+  </define>
+  <define name="tei_att.typed.attribute.type">
+    <optional>
+      <attribute name="type"/>
+    </optional>
+  </define>
+  <define name="tei_att.typed.attribute.subtype">
+    <optional>
+      <attribute name="subtype"/>
+    </optional>
+  </define>
+  <define name="tei_att.typed.attributes">
+    <ref name="tei_att.typed.attribute.type"/>
+    <ref name="tei_att.typed.attribute.subtype"/>
+  </define>
+  <define name="model.placeNamePart">
+    <choice>
+      <ref name="placeName"/>
+      <ref name="country"/>
+      <ref name="settlement"/>
+    </choice>
+  </define>
+  <define name="model.placeNamePart_sequenceOptional">
+    <optional>
+      <ref name="placeName"/>
+    </optional>
+    <optional>
+      <ref name="country"/>
+    </optional>
+    <optional>
+      <ref name="settlement"/>
+    </optional>
+  </define>
+  <define name="model.placeStateLike">
+    <choice>
+      <ref name="model.placeNamePart"/>
+      <ref name="location"/>
+      <ref name="state"/>
+      <ref name="trait"/>
+    </choice>
+  </define>
+  <define name="model.resource">
+    <ref name="text"/>
+  </define>
+  <define name="model.describedResource">
+    <choice>
+      <ref name="teiCorpus"/>
+      <ref name="TEI"/>
+    </choice>
+  </define>
+  <define name="model.objectLike">
+    <choice>
+      <ref name="object"/>
+      <ref name="listObject"/>
+    </choice>
+  </define>
+  <define name="tei_att.datable.custom.attribute.when-custom">
+    <optional>
+      <attribute name="when-custom"/>
+    </optional>
+  </define>
+  <define name="tei_att.datable.custom.attribute.notBefore-custom">
+    <optional>
+      <attribute name="notBefore-custom"/>
+    </optional>
+  </define>
+  <define name="tei_att.datable.custom.attribute.notAfter-custom">
+    <optional>
+      <attribute name="notAfter-custom"/>
+    </optional>
+  </define>
+  <define name="tei_att.datable.custom.attribute.from-custom">
+    <optional>
+      <attribute name="from-custom"/>
+    </optional>
+  </define>
+  <define name="tei_att.datable.custom.attribute.to-custom">
+    <optional>
+      <attribute name="to-custom"/>
+    </optional>
+  </define>
+  <define name="tei_att.datable.custom.attribute.datingPoint">
+    <optional>
+      <attribute name="datingPoint">
+        <ref name="teidata.pointer"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="tei_att.datable.custom.attribute.datingMethod">
+    <optional>
+      <attribute name="datingMethod">
+        <ref name="teidata.pointer"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="tei_att.datable.custom.attributes">
+    <ref name="tei_att.datable.custom.attribute.when-custom"/>
+    <ref name="tei_att.datable.custom.attribute.notBefore-custom"/>
+    <ref name="tei_att.datable.custom.attribute.notAfter-custom"/>
+    <ref name="tei_att.datable.custom.attribute.from-custom"/>
+    <ref name="tei_att.datable.custom.attribute.to-custom"/>
+    <ref name="tei_att.datable.custom.attribute.datingPoint"/>
+    <ref name="tei_att.datable.custom.attribute.datingMethod"/>
+  </define>
+  <define name="model.persNamePart">
+    <choice>
+      <ref name="surname"/>
+      <ref name="forename"/>
+    </choice>
+  </define>
+  <define name="tei_att.datable.iso.attribute.when-iso">
+    <optional>
+      <attribute name="when-iso">
+        <ref name="teidata.temporal.iso"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="tei_att.datable.iso.attribute.notBefore-iso">
+    <optional>
+      <attribute name="notBefore-iso">
+        <ref name="teidata.temporal.iso"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="tei_att.datable.iso.attribute.notAfter-iso">
+    <optional>
+      <attribute name="notAfter-iso">
+        <ref name="teidata.temporal.iso"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="tei_att.datable.iso.attribute.from-iso">
+    <optional>
+      <attribute name="from-iso">
+        <ref name="teidata.temporal.iso"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="tei_att.datable.iso.attribute.to-iso">
+    <optional>
+      <attribute name="to-iso">
+        <ref name="teidata.temporal.iso"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="tei_att.datable.iso.attributes">
+    <ref name="tei_att.datable.iso.attribute.when-iso"/>
+    <ref name="tei_att.datable.iso.attribute.notBefore-iso"/>
+    <ref name="tei_att.datable.iso.attribute.notAfter-iso"/>
+    <ref name="tei_att.datable.iso.attribute.from-iso"/>
+    <ref name="tei_att.datable.iso.attribute.to-iso"/>
+  </define>
+  <define name="tei_att.global.linking.attribute.corresp">
+    <optional>
+      <attribute name="corresp"/>
+    </optional>
+  </define>
+  <define name="tei_att.global.linking.attributes">
+    <ref name="tei_att.global.linking.attribute.corresp"/>
+  </define>
+  <!-- end of predeclared classes -->
+  <define name="tei_att.anchoring.attribute.anchored">
+    <optional>
+      <attribute name="anchored" a:defaultValue="true">
+        <ref name="teidata.truthValue"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="tei_att.anchoring.attribute.targetEnd">
+    <optional>
+      <attribute name="targetEnd"/>
+    </optional>
+  </define>
+  <define name="tei_att.anchoring.attributes">
+    <ref name="tei_att.anchoring.attribute.anchored"/>
+    <ref name="tei_att.anchoring.attribute.targetEnd"/>
+  </define>
+  <define name="tei_att.canonical.attribute.ref">
+    <attribute name="ref">
+      <ref name="teidata.pointer"/>
+    </attribute>
+  </define>
+  <define name="tei_att.canonical.attributes">
+    <ref name="tei_att.canonical.attribute.ref"/>
+  </define>
+  <define name="tei_att.datable.w3c.attribute.when">
+    <optional>
+      <attribute name="when">
+        <ref name="teidata.temporal.w3c"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="tei_att.datable.w3c.attribute.notBefore">
+    <optional>
+      <attribute name="notBefore">
+        <ref name="teidata.temporal.w3c"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="tei_att.datable.w3c.attribute.notAfter">
+    <optional>
+      <attribute name="notAfter">
+        <ref name="teidata.temporal.w3c"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="tei_att.datable.w3c.attribute.from">
+    <optional>
+      <attribute name="from">
+        <ref name="teidata.temporal.w3c"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="tei_att.datable.w3c.attribute.to">
+    <optional>
+      <attribute name="to">
+        <ref name="teidata.temporal.w3c"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="tei_att.datable.w3c.attributes">
+    <ref name="tei_att.datable.w3c.attribute.when"/>
+    <ref name="tei_att.datable.w3c.attribute.notBefore"/>
+    <ref name="tei_att.datable.w3c.attribute.notAfter"/>
+    <ref name="tei_att.datable.w3c.attribute.from"/>
+    <ref name="tei_att.datable.w3c.attribute.to"/>
+  </define>
+  <define name="tei_att.datable.attribute.period">
+    <optional>
+      <attribute name="period"/>
+    </optional>
+  </define>
+  <define name="tei_att.datable.attributes">
+    <ref name="tei_att.datable.w3c.attributes"/>
+    <ref name="tei_att.datable.iso.attributes"/>
+    <ref name="tei_att.datable.custom.attributes"/>
+    <ref name="tei_att.datable.attribute.period"/>
+  </define>
+  <define name="tei_att.global.attribute.xmlid">
+    <optional>
+      <attribute name="xml:id">
+        <data type="ID"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="tei_att.global.attribute.n">
+    <optional>
+      <attribute name="n">
+        <ref name="teidata.numeric"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="tei_att.global.attribute.xmllang">
+    <optional>
+      <attribute name="xml:lang">
+        <choice>
+          <value>fra</value>
+          <value>ita</value>
+          <value>lat</value>
+          <value>all</value>
+          <value>gre</value>
+          <value>esp</value>
+          <value>ara</value>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
+  <define name="tei_att.global.attributes">
+    <ref name="tei_att.global.rendition.attributes"/>
+    <ref name="tei_att.global.linking.attributes"/>
+    <ref name="tei_att.global.attribute.xmlid"/>
+    <ref name="tei_att.global.attribute.n"/>
+    <ref name="tei_att.global.attribute.xmllang"/>
+  </define>
+  <define name="tei_att.resourced.attribute.url">
+    <attribute name="url">
+      <ref name="teidata.pointer"/>
+    </attribute>
+  </define>
+  <define name="tei_att.resourced.attributes">
+    <ref name="tei_att.resourced.attribute.url"/>
+  </define>
+  <define name="tei_att.naming.attributes">
+    <ref name="tei_att.canonical.attributes"/>
+  </define>
+  <define name="tei_att.placement.attribute.place">
+    <optional>
+      <attribute name="place">
+        <data type="NMTOKENS"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="tei_att.placement.attributes">
+    <ref name="tei_att.placement.attribute.place"/>
+  </define>
+  <define name="tei_att.pointing.attribute.targetLang">
+    <optional>
+      <attribute name="targetLang">
+        <ref name="teidata.language"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="tei_att.pointing.attribute.target">
+    <optional>
+      <attribute name="target">
+        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the
+          destination of the reference by supplying one or more URI References</a:documentation>
+        <list>
+          <oneOrMore>
+            <data type="anyURI">
+              <param name="pattern">\S+</param>
+            </data>
+          </oneOrMore>
+        </list>
+      </attribute>
+    </optional>
+  </define>
+  <define name="tei_att.pointing.attribute.evaluate">
+    <optional>
+      <attribute name="evaluate">
+        <choice>
+          <value>all</value>
+          <value>one</value>
+          <value>none</value>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
+  <define name="tei_att.pointing.attributes">
+    <ref name="tei_att.pointing.attribute.targetLang"/>
+    <ref name="tei_att.pointing.attribute.target"/>
+    <ref name="tei_att.pointing.attribute.evaluate"/>
+  </define>
+  <define name="tei_att.pointing.group.attribute.domains">
+    <optional>
+      <attribute name="domains"/>
+    </optional>
+  </define>
+  <define name="tei_att.pointing.group.attribute.targFunc">
+    <optional>
+      <attribute name="targFunc"/>
+    </optional>
+  </define>
+  <define name="tei_att.pointing.group.attributes">
+    <ref name="tei_att.pointing.attributes"/>
+    <ref name="tei_att.typed.attributes"/>
+    <ref name="tei_att.pointing.group.attribute.domains"/>
+    <ref name="tei_att.pointing.group.attribute.targFunc"/>
+  </define>
+  <define name="tei_att.sortable.attribute.sortKey">
+    <optional>
+      <attribute name="sortKey"/>
+    </optional>
+  </define>
+  <define name="tei_att.sortable.attributes">
+    <ref name="tei_att.sortable.attribute.sortKey"/>
+  </define>
+  <define name="model.nameLike.agent">
+    <choice>
+      <ref name="name"/>
+      <ref name="persName"/>
+    </choice>
+  </define>
+  <define name="model.hiLike">
+    <ref name="hi"/>
+  </define>
+  <define name="model.emphLike">
+    <choice>
+      <ref name="foreign"/>
+      <ref name="term"/>
+      <ref name="title"/>
+    </choice>
+  </define>
+  <define name="model.highlighted">
+    <choice>
+      <ref name="model.hiLike"/>
+      <ref name="model.emphLike"/>
+    </choice>
+  </define>
+  <define name="model.dateLike">
+    <ref name="date"/>
+  </define>
+  <define name="model.measureLike">
+    <ref name="geo"/>
+  </define>
+  <define name="model.graphicLike">
+    <ref name="graphic"/>
+  </define>
+  <define name="model.pPart.editorial">
+    <choice>
+      <ref name="choice"/>
+      <ref name="abbr"/>
+      <ref name="expan"/>
+    </choice>
+  </define>
+  <define name="model.pPart.transcriptional">
+    <choice>
+      <ref name="sic"/>
+      <ref name="corr"/>
+      <ref name="reg"/>
+      <ref name="orig"/>
+      <ref name="del"/>
+      <ref name="unclear"/>
+    </choice>
+  </define>
+  <define name="model.pPart.edit">
+    <choice>
+      <ref name="model.pPart.editorial"/>
+      <ref name="model.pPart.transcriptional"/>
+    </choice>
+  </define>
+  <define name="model.ptrLike">
+    <choice>
+      <ref name="ref"/>
+      <ref name="ptr"/>
+    </choice>
+  </define>
+  <define name="model.global.meta">
+    <choice>
+      <ref name="index"/>
+      <ref name="link"/>
+      <ref name="linkGrp"/>
+    </choice>
+  </define>
+  <define name="model.milestoneLike">
+    <choice>
+      <ref name="pb"/>
+      <ref name="lb"/>
+      <ref name="cb"/>
+    </choice>
+  </define>
+  <define name="model.gLike">
+    <ref name="g"/>
+  </define>
+  <define name="model.biblLike">
+    <choice>
+      <ref name="bibl"/>
+      <ref name="biblStruct"/>
+      <ref name="listBibl"/>
+      <ref name="biblFull"/>
+      <ref name="msDesc"/>
+    </choice>
+  </define>
+  <define name="model.headLike">
+    <ref name="head"/>
+  </define>
+  <define name="model.labelLike">
+    <choice>
+      <ref name="desc"/>
+      <ref name="label"/>
+    </choice>
+  </define>
+  <define name="model.listLike">
+    <choice>
+      <ref name="list"/>
+      <ref name="listPerson"/>
+      <ref name="listPlace"/>
+      <ref name="listObject"/>
+      <ref name="table"/>
+    </choice>
+  </define>
+  <define name="model.noteLike">
+    <choice>
+      <ref name="note"/>
+      <ref name="noteGrp"/>
+    </choice>
+  </define>
+  <define name="model.lLike">
+    <ref name="l"/>
+  </define>
+  <define name="model.pLike">
+    <ref name="p"/>
+  </define>
+  <define name="model.global.edit">
+    <ref name="gap"/>
+  </define>
+  <define name="model.divPart">
+    <choice>
+      <ref name="model.lLike"/>
+      <ref name="model.pLike"/>
+      <ref name="lg"/>
+    </choice>
+  </define>
+  <define name="model.persStateLike">
+    <choice>
+      <ref name="persName"/>
+      <ref name="floruit"/>
+      <ref name="occupation"/>
+      <ref name="state"/>
+      <ref name="trait"/>
+    </choice>
+  </define>
+  <define name="model.personLike">
+    <ref name="person"/>
+  </define>
+  <define name="model.personPart">
+    <choice>
+      <ref name="model.biblLike"/>
+      <ref name="model.persStateLike"/>
+      <ref name="name"/>
+      <ref name="idno"/>
+      <ref name="birth"/>
+      <ref name="death"/>
+    </choice>
+  </define>
+  <define name="model.publicationStmtPart.agency">
+    <choice>
+      <ref name="publisher"/>
+      <ref name="distributor"/>
+      <ref name="authority"/>
+    </choice>
+  </define>
+  <define name="model.publicationStmtPart.detail">
+    <choice>
+      <ref name="model.ptrLike"/>
+      <ref name="address"/>
+      <ref name="date"/>
+      <ref name="pubPlace"/>
+      <ref name="idno"/>
+      <ref name="availability"/>
+    </choice>
+  </define>
+  <define name="model.availabilityPart">
+    <ref name="licence"/>
+  </define>
+  <define name="model.descLike">
+    <ref name="desc"/>
+  </define>
+  <define name="model.quoteLike">
+    <ref name="cit"/>
+  </define>
+  <define name="model.attributable">
+    <ref name="model.quoteLike"/>
+  </define>
+  <define name="model.respLike">
+    <choice>
+      <ref name="author"/>
+      <ref name="editor"/>
+      <ref name="respStmt"/>
+      <ref name="funder"/>
+      <ref name="principal"/>
+    </choice>
+  </define>
+  <define name="model.divWrapper">
+    <choice>
+      <ref name="byline"/>
+      <ref name="epigraph"/>
+      <ref name="salute"/>
+      <ref name="docAuthor"/>
+      <ref name="docDate"/>
+    </choice>
+  </define>
+  <define name="model.divTopPart">
+    <choice>
+      <ref name="model.headLike"/>
+      <ref name="opener"/>
+      <ref name='closer'/>
+      <ref name="signed"/>
+    </choice>
+  </define>
+  <define name="model.divTop">
+    <choice>
+      <ref name="model.divWrapper"/>
+      <ref name="model.divTopPart"/>
+    </choice>
+  </define>
+  <define name="model.pLike.front">
+    <choice>
+      <ref name="head"/>
+      <ref name="byline"/>
+      <ref name="epigraph"/>
+      <ref name="docTitle"/>
+      <ref name="titlePart"/>
+      <ref name="docAuthor"/>
+      <ref name="docEdition"/>
+      <ref name="docImprint"/>
+      <ref name="docDate"/>
+    </choice>
+  </define>
+  <define name="model.divBottomPart">
+    <choice>
+      <ref name="signed"/>
+      <ref name="postscript"/>
+      <ref name="closer"/>
+    </choice>
+  </define>
+  <define name="model.divBottom">
+    <choice>
+      <ref name="model.divWrapper"/>
+      <ref name="model.divBottomPart"/>
+    </choice>
+  </define>
+  <define name="model.titlepagePart_sequenceOptionalRepeatable">
+    <zeroOrMore>
+      <ref name="graphic"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="epigraph"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="docTitle"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="titlePart"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="docAuthor"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="imprimatur"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="docEdition"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="docImprint"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="docDate"/>
+    </zeroOrMore>
+    <zeroOrMore>
+      <ref name="byline"/>
+    </zeroOrMore>
+  </define>
+  <define name="model.choicePart_sequenceOptional">
+    <optional>
+      <ref name="sic"/>
+    </optional>
+    <optional>
+      <ref name="corr"/>
+    </optional>
+    <optional>
+      <ref name="reg"/>
+    </optional>
+    <optional>
+      <ref name="orig"/>
+    </optional>
+    <optional>
+      <ref name="unclear"/>
+    </optional>
+    <optional>
+      <ref name="abbr"/>
+    </optional>
+    <optional>
+      <ref name="expan"/>
+    </optional>
+  </define>
+  <define name="model.imprintPart">
+    <choice>
+      <ref name="publisher"/>
+      <ref name="biblScope"/>
+      <ref name="pubPlace"/>
+      <ref name="distributor"/>
+    </choice>
+  </define>
+  <define name="model.textDescPart_sequence">
+    <ref name="constitution"/>
+  </define>
+  <define name="model.addressLike">
+    <ref name="address"/>
+  </define>
+  <define name="model.nameLike">
+    <choice>
+      <ref name="model.nameLike.agent"/>
+      <ref name="model.placeStateLike"/>
+      <ref name="idno"/>
+      <ref name="model.persNamePart"/>
+      <ref name="objectName"/>
+    </choice>
+  </define>
+  <define name="model.global">
+    <choice>
+      <ref name="model.global.meta"/>
+      <ref name="model.milestoneLike"/>
+      <ref name="model.noteLike"/>
+      <ref name="model.global.edit"/>
+      <ref name="figure"/>
+      <ref name="quote"/>
+    </choice>
+  </define>
+  <define name="model.biblPart">
+    <choice>
+      <ref name="model.respLike"/>
+      <ref name="model.imprintPart"/>
+      <ref name="citedRange"/>
+      <ref name="bibl"/>
+      <ref name="relatedItem"/>
+      <ref name="textLang"/>
+      <ref name="edition"/>
+      <ref name="availability"/>
+      <ref name="msIdentifier"/>
+    </choice>
+  </define>
+  <define name="model.frontPart">
+    <choice>
+      <ref name="listBibl"/>
+      <ref name="titlePage"/>
+    </choice>
+  </define>
+  <define name="model.addrPart">
+    <choice>
+      <ref name="model.nameLike"/>
+      <ref name="addrLine"/>
+      <ref name="street"/>
+    </choice>
+  </define>
+  <define name="model.pPart.data">
+    <choice>
+      <ref name="model.dateLike"/>
+      <ref name="model.measureLike"/>
+      <ref name="model.addressLike"/>
+      <ref name="model.nameLike"/>
+    </choice>
+  </define>
+  <define name="model.inter">
+    <choice>
+      <ref name="model.biblLike"/>
+      <ref name="model.labelLike"/>
+      <ref name="model.listLike"/>
+      <ref name="model.attributable"/>
+    </choice>
+  </define>
+  <define name="model.common">
+    <choice>
+      <ref name="model.divPart"/>
+      <ref name="model.inter"/>
+    </choice>
+  </define>
+  <define name="model.phrase">
+    <choice>
+      <ref name="model.highlighted"/>
+      <ref name="model.graphicLike"/>
+      <ref name="model.pPart.edit"/>
+      <ref name="model.ptrLike"/>
+      <ref name="model.pPart.data"/>
+    </choice>
+  </define>
+  <define name="model.paraPart">
+    <choice>
+      <ref name="model.lLike"/>
+      <ref name="model.global"/>
+      <ref name="model.inter"/>
+      <ref name="model.phrase"/>
+      <ref name="lg"/>
+    </choice>
+  </define>
+  <define name="model.limitedPhrase">
+    <choice>
+      <ref name="model.hiLike"/>
+      <ref name="model.emphLike"/>
+      <ref name="model.pPart.editorial"/>
+      <ref name="model.ptrLike"/>
+      <ref name="model.pPart.data"/>
+    </choice>
+  </define>
+  <define name="model.divLike">
+    <ref name="div"/>
+  </define>
+  <define name="model.div1Like">
+    <ref name="div1"/>
+  </define>
+  <define name="model.div2Like">
+    <ref name="div2"/>
+  </define>
+  <define name="model.div3Like">
+    <ref name="div3"/>
+  </define>
+  <define name="model.div4Like">
+    <ref name="div4"/>
+  </define>
+  <define name="model.div5Like">
+    <ref name="div5"/>
+  </define>
+  <define name="model.div6Like">
+    <ref name="div6"/>
+  </define>
+  <define name="model.div7Like">
+    <ref name="div7"/>
+  </define>
+  <define name="model.applicationLike">
+    <ref name="application"/>
+  </define>
+  <define name="model.teiHeaderPart_sequenceOptional">
+    <optional>
+      <ref name="encodingDesc"/>
+    </optional>
+    <optional>
+      <ref name="profileDesc"/>
+    </optional>
+    <optional>
+      <ref name="revisionDesc"/>
+    </optional>
+  </define>
+  <define name="model.encodingDescPart">
+    <choice>
+      <ref name="schemaRef"/>
+      <ref name="projectDesc"/>
+      <ref name="editorialDecl"/>
+      <ref name="tagsDecl"/>
+      <ref name="styleDefDecl"/>
+      <ref name="appInfo"/>
+    </choice>
+  </define>
+  <define name="model.editorialDeclPart">
+    <choice>
+      <ref name="correction"/>
+      <ref name="normalization"/>
+      <ref name="segmentation"/>
+      <ref name="stdVals"/>
+      <ref name="punctuation"/>
+    </choice>
+  </define>
+  <define name="model.profileDescPart_sequenceOptional">
+    <optional>
+      <ref name="abstract"/>
+    </optional>
+    <optional>
+      <ref name="creation"/>
+    </optional>
+    <optional>
+      <ref name="textClass"/>
+    </optional>
+    <optional>
+      <ref name="textDesc"/>
+    </optional>
+    <optional>
+      <ref name="particDesc"/>
+    </optional>
+    <optional>
+      <ref name="settingDesc"/>
+    </optional>
+  </define>
+  <define name="tei_att.personal.attributes">
+    <ref name="tei_att.naming.attributes"/>
+  </define>
+  <define name="model.placeLike">
+    <ref name="place"/>
+  </define>
+  <define name="tei_att.patternReplacement.attribute.matchPattern">
+    <attribute name="matchPattern">
+      <ref name="teidata.pattern"/>
+    </attribute>
+  </define>
+  <define name="tei_att.patternReplacement.attribute.replacementPattern">
+    <attribute name="replacementPattern">
+      <ref name="teidata.replacement"/>
+    </attribute>
+  </define>
+  <define name="tei_att.patternReplacement.attributes">
+    <ref name="tei_att.patternReplacement.attribute.matchPattern"/>
+    <ref name="tei_att.patternReplacement.attribute.replacementPattern"/>
+  </define>
+  <define name="tei_att.tableDecoration.attribute.role">
+    <optional>
+      <attribute name="role" a:defaultValue="data"/>
+    </optional>
+  </define>
+  <define name="tei_att.tableDecoration.attribute.rows">
+    <optional>
+      <attribute name="rows" a:defaultValue="1">
+        <ref name="teidata.count"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="tei_att.tableDecoration.attribute.cols">
+    <optional>
+      <attribute name="cols" a:defaultValue="1">
+        <ref name="teidata.count"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="tei_att.tableDecoration.attributes">
+    <ref name="tei_att.tableDecoration.attribute.role"/>
+    <ref name="tei_att.tableDecoration.attribute.rows"/>
+    <ref name="tei_att.tableDecoration.attribute.cols"/>
+  </define>
+  <define name="tei_att.media.attribute.width">
+    <optional>
+      <attribute name="width">
+        <ref name="teidata.outputMeasurement"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="tei_att.media.attribute.height">
+    <optional>
+      <attribute name="height">
+        <ref name="teidata.outputMeasurement"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="tei_att.media.attribute.scale">
+    <optional>
+      <attribute name="scale">
+        <ref name="teidata.numeric"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="tei_att.media.attributes">
+    <ref name="tei_att.media.attribute.width"/>
+    <ref name="tei_att.media.attribute.height"/>
+    <ref name="tei_att.media.attribute.scale"/>
+  </define>
+  <!-- start rest of patterns -->
+  <define name="macro.paraContent">
+    <zeroOrMore>
+      <choice>
+        <text/>
+        <ref name="model.paraPart"/>
+      </choice>
+    </zeroOrMore>
+  </define>
+  <define name="macro.limitedContent">
+    <zeroOrMore>
+      <choice>
+        <text/>
+        <ref name="model.limitedPhrase"/>
+        <ref name="model.inter"/>
+      </choice>
+    </zeroOrMore>
+  </define>
+  <define name="macro.phraseSeq">
+    <zeroOrMore>
+      <choice>
+        <text/>
+        <ref name="model.gLike"/>
+        <ref name="model.attributable"/>
+        <ref name="model.phrase"/>
+        <ref name="model.global"/>
+      </choice>
+    </zeroOrMore>
+  </define>
+  <define name="macro.phraseSeq.limited">
+    <zeroOrMore>
+      <choice>
+        <text/>
+        <ref name="model.limitedPhrase"/>
+        <ref name="model.global"/>
+      </choice>
+    </zeroOrMore>
+  </define>
+  <define name="macro.specialPara">
+    <zeroOrMore>
+      <choice>
+        <text/>
+        <ref name="model.gLike"/>
+        <ref name="model.phrase"/>
+        <ref name="model.inter"/>
+        <ref name="model.divPart"/>
+        <ref name="model.global"/>
+      </choice>
+    </zeroOrMore>
+  </define>
+  <!-- end patterns -->
+  <!-- start elements -->
+  <!-- doc:(TEI document) contains a single TEI-conformant document, combining a single TEI header with one or more members of the model.resource class. Multiple TEI elements may be combined within a TEI (or teiCorpus) element. [4. Default Text Structure 16.1. Varieties of Composite Text] -->
+  <define name="TEI">
+    <element name="TEI">
+      <ref name="attlist.TEI"/>
+      <ref name="teiHeader"/>
+      <choice>
+        <group>
+          <oneOrMore>
+            <ref name="model.resource"/>
+          </oneOrMore>
+          <zeroOrMore>
+            <ref name="TEI"/>
+          </zeroOrMore>
+        </group>
+        <oneOrMore>
+          <ref name="TEI"/>
+        </oneOrMore>
+      </choice>
+    </element>
+  </define>
+  <define name="attlist.TEI" combine="interleave">
+    <optional>
+      <attribute name="version">
+        <ref name="teidata.version"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="attlist.TEI" combine="interleave">
+    <optional>
+      <attribute name="xsi:schemaLocation"/>
+    </optional>
+  </define>
+  <!-- doc:(abbreviation) contains an abbreviation of any sort. [3.6.5. Abbreviations and Their Expansions] -->
+  <define name="abbr">
+    <element name="abbr">
+      <ref name="attlist.abbr"/>
+      <ref name="macro.phraseSeq"/>
+    </element>
+  </define>
+  <define name="attlist.abbr" combine="interleave">
+    <empty/>
+  </define>
+  <!-- doc:contains a summary or formal abstract prefixed to an existing source document by the encoder. [2.4.4. Abstracts] -->
+  <define name="abstract">
+    <element name="abstract">
+      <ref name="attlist.abstract"/>
+      <oneOrMore>
+        <choice>
+          <ref name="model.pLike"/>
+          <ref name="model.listLike"/>
+          <ref name="listBibl"/>
+        </choice>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.abstract" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+  </define>
+  <!-- doc:(address line) contains one line of a postal address. [3.6.2. Addresses 2.2.4. Publication, Distribution, Licensing, etc. 3.12.2.4. Imprint, Size of a Document, and Reprint Information] -->
+  <define name="addrLine">
+    <element name="addrLine">
+      <ref name="attlist.addrLine"/>
+      <ref name="macro.phraseSeq"/>
+    </element>
+  </define>
+  <define name="attlist.addrLine" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+  </define>
+  <!-- doc:(address) contains a postal address, for example of a publisher, an organization, or an individual. [3.6.2. Addresses 2.2.4. Publication, Distribution, Licensing, etc. 3.12.2.4. Imprint, Size of a Document, and Reprint Information] -->
+  <define name="address">
+    <element name="address">
+      <ref name="attlist.address"/>
+      <zeroOrMore>
+        <ref name="model.global"/>
+      </zeroOrMore>
+      <oneOrMore>
+        <ref name="model.addrPart"/>
+        <zeroOrMore>
+          <ref name="model.global"/>
+        </zeroOrMore>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.address" combine="interleave">
+    <empty/>
+  </define>
+  <!-- doc:(alternative identifier) contains an alternative or former structured identifier used for a manuscript or other object, such as a former catalogue number. [11.4. The Manuscript Identifier] -->
+  <define name="altIdentifier">
+    <element name="altIdentifier">
+      <ref name="attlist.altIdentifier"/>
+      <ref name="model.placeNamePart_sequenceOptional"/>
+      <optional>
+        <ref name="institution"/>
+      </optional>
+      <optional>
+        <ref name="repository"/>
+      </optional>
+      <optional>
+        <ref name="collection"/>
+      </optional>
+      <ref name="idno"/>
+      <optional>
+        <ref name="note"/>
+      </optional>
+    </element>
+  </define>
+  <define name="attlist.altIdentifier" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.typed.attributes"/>
+    <ref name="tei_att.datable.attributes"/>
+    <optional>
+      <attribute name="calendar"/>
+    </optional>
+  </define>
+  <!-- doc:(application information) records information about an application which has edited the TEI file. [2.3.11. The Application Information Element] -->
+  <define name="appInfo">
+    <element name="appInfo">
+      <ref name="attlist.appInfo"/>
+      <oneOrMore>
+        <ref name="model.applicationLike"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.appInfo" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+  </define>
+  <!-- doc:provides information about an application which has acted upon the document. [2.3.11. The Application Information Element] -->
+  <define name="application">
+    <element name="application">
+      <ref name="attlist.application"/>
+      <oneOrMore>
+        <ref name="model.labelLike"/>
+      </oneOrMore>
+      <choice>
+        <zeroOrMore>
+          <ref name="model.ptrLike"/>
+        </zeroOrMore>
+        <zeroOrMore>
+          <ref name="model.pLike"/>
+        </zeroOrMore>
+      </choice>
+    </element>
+  </define>
+  <define name="attlist.application" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.typed.attributes"/>
+    <ref name="tei_att.datable.attributes"/>
+    <optional>
+      <attribute name="calendar"/>
+    </optional>
+    <attribute name="ident">
+      <ref name="teidata.name"/>
+    </attribute>
+    <attribute name="version">
+      <ref name="teidata.versionNumber"/>
+    </attribute>
+  </define>
+  <!-- doc:(author) in a bibliographic reference, contains the name(s) of an author, personal or corporate, of a work; for example in the same form as that provided by a recognized bibliographic name authority. [3.12.2.2. Titles, Authors, and Editors 2.2.1. The Title Statement] -->
+  <define name="author">
+    <element name="author">
+      <ref name="attlist.author"/>
+      <ref name="macro.phraseSeq"/>
+    </element>
+  </define>
+  <define name="attlist.author" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.naming.attributes"/>
+    <ref name="tei_att.datable.attributes"/>
+    <optional>
+      <attribute name="calendar"/>
+    </optional>
+  </define>
+  <!-- doc:(release authority) supplies the name of a person or other agency responsible for making a work available, other than a publisher or distributor. [2.2.4. Publication, Distribution, Licensing, etc.] -->
+  <define name="authority">
+    <element name="authority">
+      <ref name="attlist.authority"/>
+      <ref name="macro.phraseSeq.limited"/>
+    </element>
+  </define>
+  <define name="attlist.authority" combine="interleave">
+    <empty/>
+  </define>
+  <!-- doc:(availability) supplies information about the availability of a text, for example any restrictions on its use or distribution, its copyright status, any licence applying to it, etc. [2.2.4. Publication, Distribution, Licensing, etc.] -->
+  <define name="availability">
+    <element name="availability">
+      <ref name="attlist.availability"/>
+      <oneOrMore>
+        <choice>
+          <ref name="model.availabilityPart"/>
+          <ref name="model.pLike"/>
+        </choice>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.availability" combine="interleave">
+    <optional>
+      <attribute name="status">
+        <choice>
+          <value>free</value>
+          <value>unknown</value>
+          <value>restricted</value>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
+  <!-- doc:(back matter) contains any appendixes, etc. following the main part of a text. [4.7. Back Matter 4. Default Text Structure] -->
+  <define name="back">
+    <element name="back">
+      <ref name="attlist.back"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="model.frontPart"/>
+          <ref name="model.pLike.front"/>
+          <ref name="model.pLike"/>
+          <ref name="model.listLike"/>
+          <ref name="model.global"/>
+        </choice>
+      </zeroOrMore>
+      <optional>
+        <choice>
+          <group>
+            <ref name="model.div1Like"/>
+            <zeroOrMore>
+              <choice>
+                <ref name="model.frontPart"/>
+                <ref name="model.div1Like"/>
+                <ref name="model.global"/>
+              </choice>
+            </zeroOrMore>
+          </group>
+          <group>
+            <ref name="model.divLike"/>
+            <zeroOrMore>
+              <choice>
+                <ref name="model.frontPart"/>
+                <ref name="model.divLike"/>
+                <ref name="model.global"/>
+              </choice>
+            </zeroOrMore>
+          </group>
+        </choice>
+      </optional>
+      <optional>
+        <ref name="model.divBottomPart"/>
+        <zeroOrMore>
+          <choice>
+            <ref name="model.divBottomPart"/>
+            <ref name="model.global"/>
+          </choice>
+        </zeroOrMore>
+      </optional>
+    </element>
+  </define>
+  <define name="attlist.back" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <attribute name="type">
+      <choice>
+        <value>lettre</value>
+        <value>postface</value>
+        <value>lexique</value>
+        <value>titre</value>
+        <value>privilege</value>
+        <value>eloge</value>
+        <value>avis</value>
+        <value>poeme</value>
+        <value>note</value>
+      </choice>
+    </attribute>
+  </define>
+  <!-- doc:(bibliographic citation) contains a loosely-structured bibliographic citation of which the sub-components may or may not be explicitly tagged. [3.12.1. Methods of Encoding Bibliographic References and Lists of References 2.2.7. The Source Description 16.3.2. Declarable Elements] -->
+  <define name="bibl">
+    <element name="bibl">
+      <ref name="attlist.bibl"/>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="model.gLike"/>
+          <ref name="model.highlighted"/>
+          <ref name="model.pPart.data"/>
+          <ref name="model.pPart.edit"/>
+          <ref name="_DUMMY_model.segLike"/>
+          <ref name="model.ptrLike"/>
+          <ref name="model.biblPart"/>
+          <ref name="model.global"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.bibl" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.typed.attributes"/>
+    <ref name="tei_att.sortable.attributes"/>
+  </define>
+  <!-- doc:(fully-structured bibliographic citation) contains a fully-structured bibliographic citation, in which all components of the TEI file description are present. [3.12.1. Methods of Encoding Bibliographic References and Lists of References 2.2. The File Description 2.2.7. The Source Description 16.3.2. Declarable Elements] -->
+  <define name="biblFull">
+    <element name="biblFull">
+      <ref name="attlist.biblFull"/>
+      <choice>
+        <group>
+          <group>
+            <ref name="titleStmt"/>
+            <optional>
+              <ref name="editionStmt"/>
+            </optional>
+            <optional>
+              <ref name="extent"/>
+            </optional>
+            <ref name="publicationStmt"/>
+            <zeroOrMore>
+              <ref name="seriesStmt"/>
+            </zeroOrMore>
+            <optional>
+              <ref name="notesStmt"/>
+            </optional>
+          </group>
+          <zeroOrMore>
+            <ref name="sourceDesc"/>
+          </zeroOrMore>
+        </group>
+        <group>
+          <ref name="fileDesc"/>
+          <ref name="profileDesc"/>
+        </group>
+      </choice>
+    </element>
+  </define>
+  <define name="attlist.biblFull" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.sortable.attributes"/>
+  </define>
+  <!-- doc:(scope of bibliographic reference) defines the scope of a bibliographic reference, for example as a list of page numbers, or a named subdivision of a larger work. [3.12.2.5. Scopes and Ranges in Bibliographic Citations] -->
+  <define name="biblScope">
+    <element name="biblScope">
+      <ref name="attlist.biblScope"/>
+      <ref name="macro.phraseSeq"/>
+    </element>
+  </define>
+  <define name="attlist.biblScope" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+  </define>
+  <!-- doc:(structured bibliographic citation) contains a structured bibliographic citation, in which only bibliographic sub-elements appear and in a specified order. [3.12.1. Methods of Encoding Bibliographic References and Lists of References 2.2.7. The Source Description 16.3.2. Declarable Elements] -->
+  <define name="biblStruct">
+    <element name="biblStruct">
+      <ref name="attlist.biblStruct"/>
+      <zeroOrMore>
+        <ref name="analytic"/>
+      </zeroOrMore>
+      <oneOrMore>
+        <ref name="monogr"/>
+        <zeroOrMore>
+          <ref name="series"/>
+        </zeroOrMore>
+      </oneOrMore>
+      <zeroOrMore>
+        <choice>
+          <ref name="model.noteLike"/>
+          <ref name="model.ptrLike"/>
+          <ref name="relatedItem"/>
+          <ref name="citedRange"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.biblStruct" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.typed.attributes"/>
+    <ref name="tei_att.sortable.attributes"/>
+  </define>
+  <!-- doc:(birth) contains information about a person's birth, such as its date and place. [16.2.2. The Participant Description] -->
+  <define name="birth">
+    <element name="birth">
+      <ref name="attlist.birth"/>
+      <ref name="macro.phraseSeq"/>
+    </element>
+  </define>
+  <define name="attlist.birth" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.datable.attributes"/>
+    <ref name="tei_att.naming.attributes"/>
+    <ref name="tei_att.typed.attribute.subtype"/>
+    <optional>
+      <attribute name="type"/>
+    </optional>
+    <optional>
+      <attribute name="calendar"/>
+    </optional>
+  </define>
+  <!-- doc:(text body) contains the whole body of a single unitary text, excluding any front or back matter. [4. Default Text Structure] -->
+  <define name="body">
+    <element name="body">
+      <ref name="attlist.body"/>
+      <zeroOrMore>
+        <ref name="model.global"/>
+      </zeroOrMore>
+      <optional>
+        <ref name="model.divTop"/>
+        <zeroOrMore>
+          <choice>
+            <ref name="model.global"/>
+            <ref name="model.divTop"/>
+          </choice>
+        </zeroOrMore>
+      </optional>
+      <optional>
+        <ref name="_DUMMY_model.divGenLike"/>
+        <zeroOrMore>
+          <choice>
+            <ref name="model.global"/>
+            <ref name="_DUMMY_model.divGenLike"/>
+          </choice>
+        </zeroOrMore>
+      </optional>
+      <choice>
+        <oneOrMore>
+          <ref name="model.divLike"/>
+          <zeroOrMore>
+            <choice>
+              <ref name="model.global"/>
+              <ref name="_DUMMY_model.divGenLike"/>
+            </choice>
+          </zeroOrMore>
+        </oneOrMore>
+        <oneOrMore>
+          <ref name="model.div1Like"/>
+          <zeroOrMore>
+            <choice>
+              <ref name="model.global"/>
+              <ref name="_DUMMY_model.divGenLike"/>
+            </choice>
+          </zeroOrMore>
+        </oneOrMore>
+        <group>
+          <oneOrMore>
+            <choice>
+              <ref name="schemaSpec"/>
+              <ref name="model.common"/>
+            </choice>
+            <zeroOrMore>
+              <ref name="model.global"/>
+            </zeroOrMore>
+          </oneOrMore>
+          <optional>
+            <choice>
+              <oneOrMore>
+                <ref name="model.divLike"/>
+                <zeroOrMore>
+                  <choice>
+                    <ref name="model.global"/>
+                    <ref name="_DUMMY_model.divGenLike"/>
+                  </choice>
+                </zeroOrMore>
+              </oneOrMore>
+              <oneOrMore>
+                <ref name="model.div1Like"/>
+                <zeroOrMore>
+                  <choice>
+                    <ref name="model.global"/>
+                    <ref name="_DUMMY_model.divGenLike"/>
+                  </choice>
+                </zeroOrMore>
+              </oneOrMore>
+            </choice>
+          </optional>
+        </group>
+      </choice>
+      <zeroOrMore>
+        <ref name="model.divBottom"/>
+        <zeroOrMore>
+          <ref name="model.global"/>
+        </zeroOrMore>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.body" combine="interleave">
+    <empty/>
+  </define>
+  <!-- doc:(byline) contains the primary statement of responsibility given for a work on its title page or at the head or end of the work. [4.2.2. Openers and Closers 4.5. Front Matter] -->
+  <define name="byline">
+    <element name="byline">
+      <ref name="attlist.byline"/>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="model.gLike"/>
+          <ref name="model.phrase"/>
+          <ref name="docAuthor"/>
+          <ref name="model.global"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.byline" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+  </define>
+  <!-- doc:(canonical reference pattern) specifies an expression and replacement pattern for transforming a canonical reference into a URI. [2.3.6.3. Milestone Method 2.3.6. The Reference System Declaration 2.3.6.2. Search-and-Replace Method] -->
+  <define name="cRefPattern">
+    <element name="cRefPattern">
+      <ref name="attlist.cRefPattern"/>
+      <zeroOrMore>
+        <ref name="model.pLike"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.cRefPattern" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.patternReplacement.attributes"/>
+  </define>
+  <!--
+    doc:(column beginning) marks the beginning of a new column of a text on a multi-column page. [3.11.3. Milestone
+    Elements]
+  -->
+  <define name="cb">
+    <element name="cb">
+      <ref name="attlist.cb"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="attlist.cb" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.typed.attributes"/>
+  </define>
+  <!-- doc:(cell) contains one cell of a table. [15.1.1. TEI Tables] -->
+  <define name="cell">
+    <element name="cell">
+      <ref name="attlist.cell"/>
+      <ref name="macro.specialPara"/>
+    </element>
+  </define>
+  <define name="attlist.cell" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.tableDecoration.attributes"/>
+  </define>
+  <!-- doc:(change) documents a change or set of changes made during the production of a source document, or during the revision of an electronic file. [2.6. The Revision Description 2.4.1. Creation 12.7. Identifying Changes and Revisions] -->
+  <define name="change">
+    <element name="change">
+      <ref name="attlist.change"/>
+      <ref name="macro.specialPara"/>
+    </element>
+  </define>
+  <define name="attlist.change" combine="interleave">
+    <optional>
+      <attribute name="calendar"/>
+    </optional>
+  </define>
+  <!-- doc:(choice) groups a number of alternative encodings for the same point in a text. [3.5. Simple Editorial Changes] -->
+  <define name="choice">
+    <element name="choice">
+      <ref name="attlist.choice"/>
+      <ref name="model.choicePart_sequenceOptional"/>
+    </element>
+  </define>
+  <define name="attlist.choice" combine="interleave">
+    <empty/>
+  </define>
+  <!-- doc:(cited quotation) contains a quotation from some other document, together with a bibliographic reference to its source. In a dictionary it may contain an example text with at least one occurrence of the word form, used in the sense being described, or a translation of the headword, or an example. [3.3.3. Quotation 4.3.1. Grouped Texts 10.3.5.1. Examples] -->
+  <define name="cit">
+    <element name="cit">
+      <ref name="attlist.cit"/>
+      <oneOrMore>
+        <choice>
+          <ref name="model.biblLike"/>
+          <ref name="_DUMMY_model.egLike"/>
+          <ref name="_DUMMY_model.entryPart"/>
+          <ref name="model.global"/>
+          <ref name="model.graphicLike"/>
+          <ref name="model.ptrLike"/>
+          <ref name="model.attributable"/>
+          <ref name="pc"/>
+          <ref name="q"/>
+        </choice>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.cit" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.typed.attributes"/>
+  </define>
+  <!-- doc:(citation data) specifies how information may be extracted from citation structures. [3.11.4. Declaring Reference Systems 17.2.5.4. Citation Structures] -->
+  <define name="citeData">
+    <element name="citeData">
+      <ref name="attlist.citeData"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="attlist.citeData" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <attribute name="property">
+      <ref name="teidata.pointer"/>
+    </attribute>
+  </define>
+  <!-- doc:(citation structure) declares a structure and method for citing the current document. [3.11.4. Declaring Reference Systems 17.2.5.4. Citation Structures] -->
+  <define name="citeStructure">
+    <element name="citeStructure">
+      <ref name="attlist.citeStructure"/>
+      <zeroOrMore>
+        <ref name="citeData"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="citeStructure"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="model.descLike"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.citeStructure" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <optional>
+      <attribute name="delim"/>
+    </optional>
+    <attribute name="match">
+      <ref name="teidata.xpath"/>
+    </attribute>
+    <optional>
+      <attribute name="unit"/>
+    </optional>
+  </define>
+  <!-- doc:(cited range) defines the range of cited content, often represented by pages or other units [3.12.2.5. Scopes and Ranges in Bibliographic Citations] -->
+  <define name="citedRange">
+    <element name="citedRange">
+      <ref name="attlist.citedRange"/>
+      <ref name="macro.phraseSeq"/>
+    </element>
+  </define>
+  <define name="attlist.citedRange" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.pointing.attributes"/>
+  </define>
+  <!--doc:(closer)-->
+  <define name="closer">
+    <element name="closer">
+      <ref name="attlist.closer"/>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="model.gLike"/>
+          <ref name="model.phrase"/>
+          <ref name="argument"/>
+          <ref name="byline"/>
+          <ref name="dateline"/>
+          <ref name="epigraph"/>
+          <ref name="salute"/>
+          <ref name="signed"/>
+          <ref name="model.global"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.closer" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+  </define>
+  <!-- doc:(collection) contains the name of a collection of manuscripts or other objects, not necessarily located within a single repository. [11.4. The Manuscript Identifier] -->
+  <define name="collection">
+    <element name="collection">
+      <ref name="attlist.collection"/>
+      <ref name="macro.phraseSeq.limited"/>
+    </element>
+  </define>
+  <define name="attlist.collection" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.naming.attributes"/>
+    <ref name="tei_att.typed.attributes"/>
+  </define>
+  <!-- doc:(constitution) describes the internal composition of a text or text sample, for example as fragmentary, complete, etc. [16.2.1. The Text Description] -->
+  <define name="constitution">
+    <element name="constitution">
+      <ref name="attlist.constitution"/>
+      <ref name="macro.phraseSeq.limited"/>
+    </element>
+  </define>
+  <define name="attlist.constitution" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.typed.attribute.subtype"/>
+    <optional>
+      <attribute name="type" a:defaultValue="single"/>
+    </optional>
+  </define>
+  <!-- doc:(correction) contains the correct form of a passage apparently erroneous in the copy text. [3.5.1. Apparent Errors] -->
+  <define name="corr">
+    <element name="corr">
+      <ref name="attlist.corr"/>
+      <ref name="macro.paraContent"/>
+    </element>
+  </define>
+  <define name="attlist.corr" combine="interleave">
+    <empty/>
+  </define>
+  <!-- doc:(correction principles) states how and under what circumstances corrections have been made in the text. [2.3.3. The Editorial Practices Declaration 16.3.2. Declarable Elements] -->
+  <define name="correction">
+    <element name="correction">
+      <ref name="attlist.correction"/>
+      <oneOrMore>
+        <ref name="model.pLike"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.correction" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <optional>
+      <attribute name="status">
+        <choice>
+          <value>high</value>
+          <value>medium</value>
+          <value>low</value>
+          <value>unknown</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="method" a:defaultValue="silent">
+        <choice>
+          <value>silent</value>
+          <value>markup</value>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
+  <!-- doc:(country) contains the name of a geo-political unit, such as a nation, country, colony, or commonwealth, larger than or administratively superior to a region and smaller than a bloc. [14.2.3. Place Names] -->
+  <define name="country">
+    <element name="country">
+      <ref name="attlist.country"/>
+      <ref name="macro.phraseSeq"/>
+    </element>
+  </define>
+  <define name="attlist.country" combine="interleave">
+    <optional>
+      <attribute name="calendar"/>
+    </optional>
+  </define>
+  <!-- doc:(creation) contains information about the creation of a text. [2.4.1. Creation 2.4. The Profile Description] -->
+  <define name="creation">
+    <element name="creation">
+      <ref name="attlist.creation"/>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="model.limitedPhrase"/>
+          <ref name="listChange"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.creation" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.datable.attributes"/>
+    <optional>
+      <attribute name="calendar"/>
+    </optional>
+  </define>
+  <!-- doc:(date) contains a date in any format. [3.6.4. Dates and Times 2.2.4. Publication, Distribution, Licensing, etc. 2.6. The Revision Description 3.12.2.4. Imprint, Size of a Document, and Reprint Information 16.2.3. The Setting Description 14.4. Dates] -->
+  <define name="date">
+    <element name="date">
+      <ref name="attlist.date"/>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="model.gLike"/>
+          <ref name="model.phrase"/>
+          <ref name="model.global"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.date" combine="interleave">
+    <choice>
+      <attribute name="when"/>
+      <attribute name="when-custom"/>
+      <group>
+        <attribute name="notBefore"/>
+        <attribute name="notAfter"/>
+      </group>
+    </choice>
+  </define>
+  <define name="dateline">
+    <element name="dateline">
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="model.gLike"/>
+          <ref name="model.phrase"/>
+          <ref name="model.global"/>          
+          <ref name="model.listLike"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>  
+  <!-- doc:(death) contains information about a person's death, such as its date and place. [16.2.2. The Participant Description] -->
+  <define name="death">
+    <element name="death">
+      <ref name="attlist.death"/>
+      <ref name="macro.phraseSeq"/>
+    </element>
+  </define>
+  <define name="attlist.death" combine="interleave">
+    <ref name="tei_att.datable.attributes"/>
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.naming.attributes"/>
+    <ref name="tei_att.typed.attribute.subtype"/>
+    <optional>
+      <attribute name="type"/>
+    </optional>
+    <optional>
+      <attribute name="calendar"/>
+    </optional>
+  </define>
+  <!-- doc:(deletion) contains a letter, word, or passage deleted, marked as deleted, or otherwise indicated as superfluous or spurious in the copy text by an author, scribe, or a previous annotator or corrector. [3.5.3. Additions, Deletions, and Omissions] -->
+  <define name="del">
+    <element name="del">
+      <ref name="attlist.del"/>
+      <ref name="macro.paraContent"/>
+    </element>
+  </define>
+  <define name="attlist.del" combine="interleave">
+    <attribute name="type">
+      <choice>
+        <value>overstrike</value>
+        <value>missing</value>
+      </choice>
+    </attribute>
+  </define>
+  <!-- doc:(description) contains a short description of the purpose, function, or use of its parent element, or when the parent is a documentation element, describes or defines the object being documented.  [23.4.1. Description of Components] -->
+  <define name="desc">
+    <element name="desc">
+      <ref name="attlist.desc"/>
+      <ref name="macro.limitedContent"/>
+    </element>
+  </define>
+  <define name="attlist.desc" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.typed.attribute.subtype"/>
+    <optional>
+      <attribute name="type"/>
+    </optional>
+  </define>
+  <!-- doc:(distributor) supplies the name of a person or other agency responsible for the distribution of a text. [2.2.4. Publication, Distribution, Licensing, etc.] -->
+  <define name="distributor">
+    <element name="distributor">
+      <ref name="attlist.distributor"/>
+      <ref name="macro.phraseSeq"/>
+    </element>
+  </define>
+  <define name="attlist.distributor" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.canonical.attributes"/>
+  </define>
+  <!-- doc:(text division) contains a subdivision of the front, body, or back of a text. [4.1. Divisions of the Body] -->
+  <define name="div">
+    <element name="div">
+      <ref name="attlist.div"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="model.divTop"/>
+          <ref name="model.global"/>
+        </choice>
+      </zeroOrMore>
+      <optional>
+        <choice>
+          <oneOrMore>
+            <choice>
+              <ref name="model.divLike"/>
+              <ref name="_DUMMY_model.divGenLike"/>
+            </choice>
+            <zeroOrMore>
+              <ref name="model.global"/>
+            </zeroOrMore>
+          </oneOrMore>
+          <group>
+            <oneOrMore>
+              <choice>
+                <ref name="schemaSpec"/>
+                <ref name="model.common"/>
+              </choice>
+              <zeroOrMore>
+                <ref name="model.global"/>
+              </zeroOrMore>
+            </oneOrMore>
+            <zeroOrMore>
+              <choice>
+                <ref name="model.divLike"/>
+                <ref name="_DUMMY_model.divGenLike"/>
+              </choice>
+              <zeroOrMore>
+                <ref name="model.global"/>
+              </zeroOrMore>
+            </zeroOrMore>
+          </group>
+        </choice>
+        <zeroOrMore>
+          <ref name="model.divBottom"/>
+          <zeroOrMore>
+            <ref name="model.global"/>
+          </zeroOrMore>
+        </zeroOrMore>
+      </optional>
+    </element>
+  </define>
+  <define name="attlist.div" combine="interleave">
+    <ref name="tei_att.global.linking.attribute.corresp"/>
+    <ref name="tei_att.typed.attribute.subtype"/>
+    <optional>
+      <attribute name="xml:id">
+        <ref name="teidata.numeric"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="xml:lang">
+        <choice>
+          <value>fra</value>
+          <value>ita</value>
+          <value>lat</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="n">
+        <ref name="teidata.numeric"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="rend"/>
+    </optional>
+    <attribute name="type">
+      <choice>
+        <value>lettre</value>
+        <value>preface</value>
+        <value>lexique</value>
+        <value>titre</value>
+        <value>privilege</value>
+        <value>eloge</value>
+        <value>avis</value>
+        <value>poeme</value>
+        <value>errata</value>
+        <value>avertissement</value>
+        <value>dedicace</value>
+        <value>biographie</value>
+        <value>postface</value>
+        <value>livre</value>
+        <value>note</value>
+      </choice>
+    </attribute>
+  </define>
+  <!-- doc:(level-1 text division) contains a first-level subdivision of the front, body, or back of a text. [4.1.2. Numbered Divisions] -->
+  <define name="div1">
+    <element name="div1">
+      <ref name="attlist.div1"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="model.divTop"/>
+          <ref name="model.global"/>
+        </choice>
+      </zeroOrMore>
+      <optional>
+        <choice>
+          <oneOrMore>
+            <choice>
+              <ref name="model.div2Like"/>
+              <ref name="_DUMMY_model.divGenLike"/>
+            </choice>
+            <zeroOrMore>
+              <ref name="model.global"/>
+            </zeroOrMore>
+          </oneOrMore>
+          <group>
+            <oneOrMore>
+              <choice>
+                <ref name="schemaSpec"/>
+                <ref name="model.common"/>
+              </choice>
+              <zeroOrMore>
+                <ref name="model.global"/>
+              </zeroOrMore>
+            </oneOrMore>
+            <zeroOrMore>
+              <choice>
+                <ref name="model.div2Like"/>
+                <ref name="_DUMMY_model.divGenLike"/>
+              </choice>
+              <zeroOrMore>
+                <ref name="model.global"/>
+              </zeroOrMore>
+            </zeroOrMore>
+          </group>
+        </choice>
+        <zeroOrMore>
+          <ref name="model.divBottom"/>
+          <zeroOrMore>
+            <ref name="model.global"/>
+          </zeroOrMore>
+        </zeroOrMore>
+      </optional>
+    </element>
+  </define>
+  <define name="attlist.div1" combine="interleave">
+    <ref name="tei_att.global.rendition.attribute.rend"/>
+    <ref name="tei_att.global.linking.attribute.corresp"/>
+    <ref name="tei_att.typed.attribute.subtype"/>
+    <attribute name="xml:id">
+      <data type="ID"/>
+    </attribute>
+    <attribute name="n">
+      <ref name="teidata.numeric"/>
+    </attribute>
+    <attribute name="type">
+      <choice>
+        <value>lettre</value>
+        <value>livre</value>
+        <value>chapitre</value>
+        <value>sous-chapitre</value>
+        <value>dictionnaire</value>
+      </choice>
+    </attribute>
+    <optional>
+      <attribute name="xml:lang">
+        <choice>
+          <value>fra</value>
+          <value>ita</value>
+          <value>lat</value>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
+  <!-- doc:(level-2 text division) contains a sesacond-level subdivision of the front, body, or back of a text. [4.1.2. Numbered Divisions] -->
+  <define name="div2">
+    <element name="div2">
+      <ref name="attlist.div2"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="model.divTop"/>
+          <ref name="model.global"/>
+        </choice>
+      </zeroOrMore>
+      <optional>
+        <choice>
+          <oneOrMore>
+            <choice>
+              <ref name="model.div3Like"/>
+              <ref name="_DUMMY_model.divGenLike"/>
+            </choice>
+            <zeroOrMore>
+              <ref name="model.global"/>
+            </zeroOrMore>
+          </oneOrMore>
+          <group>
+            <oneOrMore>
+              <choice>
+                <ref name="schemaSpec"/>
+                <ref name="model.common"/>
+              </choice>
+              <zeroOrMore>
+                <ref name="model.global"/>
+              </zeroOrMore>
+            </oneOrMore>
+            <zeroOrMore>
+              <choice>
+                <ref name="model.div3Like"/>
+                <ref name="_DUMMY_model.divGenLike"/>
+              </choice>
+              <zeroOrMore>
+                <ref name="model.global"/>
+              </zeroOrMore>
+            </zeroOrMore>
+          </group>
+        </choice>
+        <zeroOrMore>
+          <ref name="model.divBottom"/>
+          <zeroOrMore>
+            <ref name="model.global"/>
+          </zeroOrMore>
+        </zeroOrMore>
+      </optional>
+    </element>
+  </define>
+  <define name="attlist.div2" combine="interleave">
+    <ref name="tei_att.global.rendition.attribute.rend"/>
+    <ref name="tei_att.global.linking.attribute.corresp"/>
+    <ref name="tei_att.typed.attribute.subtype"/>
+    <attribute name="xml:id">
+      <data type="ID"/>
+    </attribute>
+    <attribute name="n">
+      <ref name="teidata.numeric"/>
+    </attribute>
+    <attribute name="type">
+      <choice>
+        <value>lettre</value>
+        <value>livre</value>
+        <value>chapitre</value>
+        <value>sous-chapitre</value>
+        <value>section</value>
+        <value>entretien</value>
+      </choice>
+    </attribute>
+    <optional>
+      <attribute name="xml:lang">
+        <choice>
+          <value>fra</value>
+          <value>ita</value>
+          <value>lat</value>
+        </choice>
+      </attribute>
+    </optional>
+    
+  </define>
+  <!-- doc:(level-3 text division) contains a third-level subdivision of the front, body, or back of a text. [4.1.2. Numbered Divisions] -->
+  <define name="div3">
+    <element name="div3">
+      <ref name="attlist.div3"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="model.divTop"/>
+          <ref name="model.global"/>
+        </choice>
+      </zeroOrMore>
+      <optional>
+        <choice>
+          <oneOrMore>
+            <choice>
+              <ref name="model.div4Like"/>
+              <ref name="_DUMMY_model.divGenLike"/>
+            </choice>
+            <zeroOrMore>
+              <ref name="model.global"/>
+            </zeroOrMore>
+          </oneOrMore>
+          <group>
+            <oneOrMore>
+              <choice>
+                <ref name="schemaSpec"/>
+                <ref name="model.common"/>
+              </choice>
+              <zeroOrMore>
+                <ref name="model.global"/>
+              </zeroOrMore>
+            </oneOrMore>
+            <zeroOrMore>
+              <choice>
+                <ref name="model.div4Like"/>
+                <ref name="_DUMMY_model.divGenLike"/>
+              </choice>
+              <zeroOrMore>
+                <ref name="model.global"/>
+              </zeroOrMore>
+            </zeroOrMore>
+          </group>
+        </choice>
+        <zeroOrMore>
+          <ref name="model.divBottom"/>
+          <zeroOrMore>
+            <ref name="model.global"/>
+          </zeroOrMore>
+        </zeroOrMore>
+      </optional>
+    </element>
+  </define>
+  <define name="attlist.div3" combine="interleave">
+    <ref name="tei_att.global.attribute.n"/>
+    <ref name="tei_att.global.linking.attribute.corresp"/>
+    <ref name="tei_att.typed.attribute.subtype"/>
+    <attribute name="xml:id">
+      <data type="ID"/>
+    </attribute>
+    <attribute name="type">
+      <choice>
+        <value>lettre</value>
+        <value>livre</value>
+        <value>chapitre</value>
+        <value>sous-chapitre</value>
+        <value>section</value>
+      </choice>
+    </attribute>
+    <optional>
+      <attribute name="xml:lang">
+        <choice>
+          <value>fra</value>
+          <value>ita</value>
+          <value>lat</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="rend"/>
+    </optional>
+    
+  </define>
+  <!-- doc:(level-4 text division) contains a fourth-level subdivision of the front, body, or back of a text. [4.1.2. Numbered Divisions] -->
+  <define name="div4">
+    <element name="div4">
+      <ref name="attlist.div4"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="model.divTop"/>
+          <ref name="model.global"/>
+        </choice>
+      </zeroOrMore>
+      <optional>
+        <choice>
+          <oneOrMore>
+            <choice>
+              <ref name="model.div5Like"/>
+              <ref name="_DUMMY_model.divGenLike"/>
+            </choice>
+            <zeroOrMore>
+              <ref name="model.global"/>
+            </zeroOrMore>
+          </oneOrMore>
+          <group>
+            <oneOrMore>
+              <choice>
+                <ref name="schemaSpec"/>
+                <ref name="model.common"/>
+              </choice>
+              <zeroOrMore>
+                <ref name="model.global"/>
+              </zeroOrMore>
+            </oneOrMore>
+            <zeroOrMore>
+              <choice>
+                <ref name="model.div5Like"/>
+                <ref name="_DUMMY_model.divGenLike"/>
+              </choice>
+              <zeroOrMore>
+                <ref name="model.global"/>
+              </zeroOrMore>
+            </zeroOrMore>
+          </group>
+        </choice>
+        <zeroOrMore>
+          <ref name="model.divBottom"/>
+          <zeroOrMore>
+            <ref name="model.global"/>
+          </zeroOrMore>
+        </zeroOrMore>
+      </optional>
+    </element>
+  </define>
+  <define name="attlist.div4" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.typed.attributes"/>
+  </define>
+  <!-- doc:(level-5 text division) contains a fifth-level subdivision of the front, body, or back of a text. [4.1.2. Numbered Divisions] -->
+  <define name="div5">
+    <element name="div5">
+      <ref name="attlist.div5"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="model.divTop"/>
+          <ref name="model.global"/>
+        </choice>
+      </zeroOrMore>
+      <optional>
+        <choice>
+          <oneOrMore>
+            <choice>
+              <ref name="model.div6Like"/>
+              <ref name="_DUMMY_model.divGenLike"/>
+            </choice>
+            <zeroOrMore>
+              <ref name="model.global"/>
+            </zeroOrMore>
+          </oneOrMore>
+          <group>
+            <oneOrMore>
+              <choice>
+                <ref name="schemaSpec"/>
+                <ref name="model.common"/>
+              </choice>
+              <zeroOrMore>
+                <ref name="model.global"/>
+              </zeroOrMore>
+            </oneOrMore>
+            <zeroOrMore>
+              <choice>
+                <ref name="model.div6Like"/>
+                <ref name="_DUMMY_model.divGenLike"/>
+              </choice>
+              <zeroOrMore>
+                <ref name="model.global"/>
+              </zeroOrMore>
+            </zeroOrMore>
+          </group>
+        </choice>
+        <zeroOrMore>
+          <ref name="model.divBottom"/>
+          <zeroOrMore>
+            <ref name="model.global"/>
+          </zeroOrMore>
+        </zeroOrMore>
+      </optional>
+    </element>
+  </define>
+  <define name="attlist.div5" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.typed.attributes"/>
+  </define>
+  <!-- doc:(level-6 text division) contains a sixth-level subdivision of the front, body, or back of a text. [4.1.2. Numbered Divisions] -->
+  <define name="div6">
+    <element name="div6">
+      <ref name="attlist.div6"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="model.divTop"/>
+          <ref name="model.global"/>
+        </choice>
+      </zeroOrMore>
+      <optional>
+        <choice>
+          <oneOrMore>
+            <choice>
+              <ref name="model.div7Like"/>
+              <ref name="_DUMMY_model.divGenLike"/>
+            </choice>
+            <zeroOrMore>
+              <ref name="model.global"/>
+            </zeroOrMore>
+          </oneOrMore>
+          <group>
+            <oneOrMore>
+              <choice>
+                <ref name="schemaSpec"/>
+                <ref name="model.common"/>
+              </choice>
+              <zeroOrMore>
+                <ref name="model.global"/>
+              </zeroOrMore>
+            </oneOrMore>
+            <zeroOrMore>
+              <choice>
+                <ref name="model.div7Like"/>
+                <ref name="_DUMMY_model.divGenLike"/>
+              </choice>
+              <zeroOrMore>
+                <ref name="model.global"/>
+              </zeroOrMore>
+            </zeroOrMore>
+          </group>
+        </choice>
+        <zeroOrMore>
+          <ref name="model.divBottom"/>
+          <zeroOrMore>
+            <ref name="model.global"/>
+          </zeroOrMore>
+        </zeroOrMore>
+      </optional>
+    </element>
+  </define>
+  <define name="attlist.div6" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.typed.attributes"/>
+  </define>
+  <!-- doc:(level-7 text division) contains the smallest possible subdivision of the front, body or back of a text, larger than a paragraph. [4.1.2. Numbered Divisions] -->
+  <define name="div7">
+    <element name="div7">
+      <ref name="attlist.div7"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="model.divTop"/>
+          <ref name="model.global"/>
+        </choice>
+      </zeroOrMore>
+      <optional>
+        <oneOrMore>
+          <choice>
+            <ref name="schemaSpec"/>
+            <ref name="model.common"/>
+          </choice>
+          <zeroOrMore>
+            <ref name="model.global"/>
+          </zeroOrMore>
+        </oneOrMore>
+        <zeroOrMore>
+          <ref name="model.divBottom"/>
+          <zeroOrMore>
+            <ref name="model.global"/>
+          </zeroOrMore>
+        </zeroOrMore>
+      </optional>
+    </element>
+  </define>
+  <define name="attlist.div7" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.typed.attributes"/>
+  </define>
+  <!-- doc:(document author) contains the name of the author of the document, as given on the title page (often but not always contained in a byline). [4.6. Title Pages] -->
+  <define name="docAuthor">
+    <element name="docAuthor">
+      <ref name="attlist.docAuthor"/>
+      <ref name="macro.phraseSeq"/>
+    </element>
+  </define>
+  <define name="attlist.docAuthor" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.canonical.attributes"/>
+  </define>
+  <!-- doc:(document date) contains the date of a document, as given on a title page or in a dateline. [4.6. Title Pages] -->
+  <define name="docDate">
+    <element name="docDate">
+      <ref name="attlist.docDate"/>
+      <ref name="macro.phraseSeq"/>
+    </element>
+  </define>
+  <define name="attlist.docDate" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.datable.attributes"/>
+  </define>
+  <!-- doc:(document edition) contains an edition statement as presented on a title page of a document. [4.6. Title Pages] -->
+  <define name="docEdition">
+    <element name="docEdition">
+      <ref name="attlist.docEdition"/>
+      <ref name="macro.paraContent"/>
+    </element>
+  </define>
+  <define name="attlist.docEdition" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+  </define>
+  <!-- doc:(document imprint) contains the imprint statement (place and date of publication, publisher name), as given (usually) at the foot of a title page. [4.6. Title Pages] -->
+  <define name="docImprint">
+    <element name="docImprint">
+      <ref name="attlist.docImprint"/>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="model.gLike"/>
+          <ref name="model.phrase"/>
+          <ref name="pubPlace"/>
+          <ref name="docDate"/>
+          <ref name="publisher"/>
+          <ref name="model.global"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.docImprint" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+  </define>
+  <!-- doc:(document title) contains the title of a document, including all its constituents, as given on a title page. [4.6. Title Pages] -->
+  <define name="docTitle">
+    <element name="docTitle">
+      <ref name="attlist.docTitle"/>
+      <zeroOrMore>
+        <ref name="model.global"/>
+      </zeroOrMore>
+      <oneOrMore>
+        <ref name="titlePart"/>
+        <zeroOrMore>
+          <ref name="model.global"/>
+        </zeroOrMore>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.docTitle" combine="interleave">
+    <empty/>
+  </define>
+  <!-- doc:(edition) describes the particularities of one edition of a text. [2.2.2. The Edition Statement] -->
+  <define name="edition">
+    <element name="edition">
+      <ref name="attlist.edition"/>
+      <ref name="macro.phraseSeq"/>
+    </element>
+  </define>
+  <define name="attlist.edition" combine="interleave">
+    <empty/>
+  </define>
+  <!-- doc:(edition statement) groups information relating to one edition of a text. [2.2.2. The Edition Statement 2.2. The File Description] -->
+  <define name="editionStmt">
+    <element name="editionStmt">
+      <ref name="attlist.editionStmt"/>
+      <choice>
+        <oneOrMore>
+          <ref name="model.pLike"/>
+        </oneOrMore>
+        <group>
+          <ref name="edition"/>
+          <zeroOrMore>
+            <ref name="model.respLike"/>
+          </zeroOrMore>
+        </group>
+      </choice>
+    </element>
+  </define>
+  <define name="attlist.editionStmt" combine="interleave">
+    <empty/>
+  </define>
+  <!-- doc:contains a secondary statement of responsibility for a bibliographic item, for example the name of an individual, institution or organization, (or of several such) acting as editor, compiler, translator, etc. [3.12.2.2. Titles, Authors, and Editors] -->
+  <define name="editor">
+    <element name="editor">
+      <ref name="attlist.editor"/>
+      <ref name="macro.phraseSeq"/>
+    </element>
+  </define>
+  <define name="attlist.editor" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.naming.attributes"/>
+    <ref name="tei_att.datable.attributes"/>
+    <optional>
+      <attribute name="calendar"/>
+    </optional>
+  </define>
+  <!-- doc:(editorial practice declaration) provides details of editorial principles and practices applied during the encoding of a text. [2.3.3. The Editorial Practices Declaration 2.3. The Encoding Description 16.3.2. Declarable Elements] -->
+  <define name="editorialDecl">
+    <element name="editorialDecl">
+      <ref name="attlist.editorialDecl"/>
+      <oneOrMore>
+        <choice>
+          <ref name="model.pLike"/>
+          <ref name="model.editorialDeclPart"/>
+        </choice>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.editorialDecl" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+  </define>
+  <!-- doc:(encoding description) documents the relationship between an electronic text and the source or sources from which it was derived. [2.3. The Encoding Description 2.1.1. The TEI Header and Its Components] -->
+  <define name="encodingDesc">
+    <element name="encodingDesc">
+      <ref name="attlist.encodingDesc"/>
+      <oneOrMore>
+        <choice>
+          <ref name="model.encodingDescPart"/>
+          <ref name="model.pLike"/>
+        </choice>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.encodingDesc" combine="interleave">
+    <empty/>
+  </define>
+  <!-- doc:(epigraph) contains a quotation, anonymous or attributed, appearing at the start or end of a section or on a title page. [4.2.3. Arguments, Epigraphs, and Postscripts 4.2. Elements Common to All Divisions 4.6. Title Pages] -->
+  <define name="epigraph">
+    <element name="epigraph">
+      <ref name="attlist.epigraph"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="model.common"/>
+          <ref name="model.global"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.epigraph" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+  </define>
+  <!-- doc:(expansion) contains the expansion of an abbreviation. [3.6.5. Abbreviations and Their Expansions] -->
+  <define name="expan">
+    <element name="expan">
+      <ref name="attlist.expan"/>
+      <ref name="macro.phraseSeq"/>
+    </element>
+  </define>
+  <define name="attlist.expan" combine="interleave">
+    <empty/>
+  </define>
+  <!-- doc:(description of figure) contains a brief prose description of the appearance or content of a graphic figure, for use when documenting an image without displaying it. [15.4. Specific Elements for Graphic Images] -->
+  <define name="figDesc">
+    <element name="figDesc">
+      <ref name="attlist.figDesc"/>
+      <ref name="macro.limitedContent"/>
+    </element>
+  </define>
+  <define name="attlist.figDesc" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+  </define>
+  <!-- doc:(figure) groups elements representing or containing graphic information such as an illustration, formula, or figure. [15.4. Specific Elements for Graphic Images] -->
+  <define name="figure">
+    <element name="figure">
+      <ref name="attlist.figure"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="model.headLike"/>
+          <ref name="model.common"/>
+          <ref name="figDesc"/>
+          <ref name="model.graphicLike"/>
+          <ref name="model.global"/>
+          <ref name="model.divBottom"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.figure" combine="interleave">
+    <attribute name="type">
+      <choice>
+        <value>ornement</value>
+        <value>lettrine</value>
+        <value>dessin</value>
+        <value>schema</value>
+        <value>gravure</value>
+        <value>medaillon</value>
+        <value>tableau</value>
+      </choice>
+    </attribute>
+    <optional>
+      <attribute name="source"/>
+    </optional>
+    <optional>
+      <attribute name="n"/>
+    </optional>
+  </define>
+  <!-- doc:(file description) contains a full bibliographic description of an electronic file. [2.2. The File Description 2.1.1. The TEI Header and Its Components] -->
+  <define name="fileDesc">
+    <element name="fileDesc">
+      <ref name="attlist.fileDesc"/>
+      <group>
+        <ref name="titleStmt"/>
+        <optional>
+          <ref name="editionStmt"/>
+        </optional>
+        <optional>
+          <ref name="extent"/>
+        </optional>
+        <ref name="publicationStmt"/>
+        <zeroOrMore>
+          <ref name="seriesStmt"/>
+        </zeroOrMore>
+        <optional>
+          <ref name="notesStmt"/>
+        </optional>
+      </group>
+      <oneOrMore>
+        <ref name="sourceDesc"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.fileDesc" combine="interleave">
+    <empty/>
+  </define>
+  <!-- doc:(floruit) contains information about a person's period of activity. [14.3.2.1. Personal Characteristics] -->
+  <define name="floruit">
+    <element name="floruit">
+      <ref name="attlist.floruit"/>
+      <ref name="macro.phraseSeq"/>
+    </element>
+  </define>
+  <define name="attlist.floruit" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.datable.attributes"/>
+    <optional>
+      <attribute name="calendar"/>
+    </optional>
+  </define>
+  <!-- doc:(foreign) identifies a word or phrase as belonging to some language other than that of the surrounding text. [3.3.2.1. Foreign Words or Expressions] -->
+  <define name="foreign">
+    <element name="foreign">
+      <ref name="attlist.foreign"/>
+      <ref name="macro.phraseSeq"/>
+    </element>
+  </define>
+  <define name="attlist.foreign" combine="interleave">
+    <attribute name="xml:lang">
+      <choice>
+        <value>gre</value>
+        <value>lat</value>
+        <value>all</value>
+        <value>fra</value>
+        <value>ita</value>
+        <value>esp</value>
+        <value>heb</value>
+        <value>ara</value>
+      </choice>
+    </attribute>
+  </define>
+  <!-- doc:(forename) contains a forename, given or baptismal name. [14.2.1. Personal Names] -->
+  <define name="forename">
+    <element name="forename">
+      <ref name="attlist.forename"/>
+      <ref name="macro.phraseSeq"/>
+    </element>
+  </define>
+  <define name="attlist.forename" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.personal.attributes"/>
+    <ref name="tei_att.typed.attributes"/>
+  </define>
+  <!-- doc:(front matter) contains any prefatory matter (headers, abstracts, title page, prefaces, dedications, etc.) found at the start of a document, before the main body. [4.6. Title Pages 4. Default Text Structure] -->
+  <define name="front">
+    <element name="front">
+      <ref name="attlist.front"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="model.frontPart"/>
+          <ref name="model.pLike"/>
+          <ref name="model.pLike.front"/>
+          <ref name="model.global"/>
+        </choice>
+      </zeroOrMore>
+      <optional>
+        <choice>
+          <group>
+            <ref name="model.div1Like"/>
+            <zeroOrMore>
+              <choice>
+                <ref name="model.div1Like"/>
+                <ref name="model.frontPart"/>
+                <ref name="model.global"/>
+              </choice>
+            </zeroOrMore>
+          </group>
+          <group>
+            <ref name="model.divLike"/>
+            <zeroOrMore>
+              <choice>
+                <ref name="model.divLike"/>
+                <ref name="model.frontPart"/>
+                <ref name="model.global"/>
+              </choice>
+            </zeroOrMore>
+          </group>
+        </choice>
+        <optional>
+          <ref name="model.divBottom"/>
+          <zeroOrMore>
+            <choice>
+              <ref name="model.divBottom"/>
+              <ref name="model.global"/>
+            </choice>
+          </zeroOrMore>
+        </optional>
+      </optional>
+    </element>
+  </define>
+  <define name="attlist.front" combine="interleave">
+    <empty/>
+  </define>
+  <!-- doc:(funding body) specifies the name of an individual, institution, or organization responsible for the funding of a project or text. [2.2.1. The Title Statement] -->
+  <define name="funder">
+    <element name="funder">
+      <ref name="attlist.funder"/>
+      <ref name="macro.phraseSeq.limited"/>
+    </element>
+  </define>
+  <define name="attlist.funder" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.canonical.attributes"/>
+    <ref name="tei_att.datable.attributes"/>
+    <optional>
+      <attribute name="calendar"/>
+    </optional>
+  </define>
+  <!-- doc:(character or glyph) represents a glyph, or a non-standard character. [5. Characters, Glyphs, and Writing Modes] -->
+  <define name="g">
+    <element name="g">
+      <ref name="attlist.g"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.g" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.typed.attributes"/>
+    <optional>
+      <attribute name="ref">
+        <ref name="teidata.pointer"/>
+      </attribute>
+    </optional>
+  </define>
+  <!-- doc:(gap) indicates a point where material has been omitted in a transcription, whether for editorial reasons described in the TEI header, as part of sampling practice, or because the material is illegible, invisible, or inaudible. [3.5.3. Additions, Deletions, and Omissions] -->
+  <define name="gap">
+    <element name="gap">
+      <ref name="attlist.gap"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="model.descLike"/>
+          <ref name="_DUMMY_model.certLike"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.gap" combine="interleave">
+    <optional>
+      <attribute name="reason">
+        <data type="NMTOKENS"/>
+      </attribute>
+    </optional>
+  </define>
+  <!-- doc:(geographical coordinates) contains any expression of a set of geographic coordinates, representing a point, line, or area on the surface of the earth in some notation. [14.3.4.1. Varieties of Location] -->
+  <define name="geo">
+    <element name="geo">
+      <ref name="attlist.geo"/>
+      <text/>
+    </element>
+  </define>
+  <define name="attlist.geo" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+  </define>
+  <!-- doc:(graphic) indicates the location of a graphic or illustration, either forming part of a text, or providing an image of it. [3.10. Graphics and Other Non-textual Components 12.1. Digital Facsimiles] -->
+  <define name="graphic">
+    <element name="graphic">
+      <ref name="attlist.graphic"/>
+      <zeroOrMore>
+        <ref name="model.descLike"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.graphic" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.media.attributes"/>
+    <ref name="tei_att.resourced.attributes"/>
+    <ref name="tei_att.typed.attributes"/>
+  </define>
+  <!-- doc:(heading) contains any type of heading, for example the title of a section, or the heading of a list, glossary, manuscript description, etc. [4.2.1. Headings and Trailers] -->
+  <define name="head">
+    <element name="head">
+      <ref name="attlist.head"/>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="lg"/>
+          <ref name="model.gLike"/>
+          <ref name="model.phrase"/>
+          <ref name="model.inter"/>
+          <ref name="model.lLike"/>
+          <ref name="model.global"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.head" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.typed.attributes"/>
+    <ref name="tei_att.placement.attributes"/>
+  </define>
+  <!-- doc:(heading for list items) contains the heading for the item or gloss column in a glossary list or similar structured list. [3.8. Lists] -->
+  <define name="headItem">
+    <element name="headItem">
+      <ref name="attlist.headItem"/>
+      <ref name="macro.phraseSeq"/>
+    </element>
+  </define>
+  <define name="attlist.headItem" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+  </define>
+  <!-- doc:(heading for list labels) contains the heading for the label or term column in a glossary list or similar structured list. [3.8. Lists] -->
+  <define name="headLabel">
+    <element name="headLabel">
+      <ref name="attlist.headLabel"/>
+      <ref name="macro.phraseSeq"/>
+    </element>
+  </define>
+  <define name="attlist.headLabel" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+  </define>
+  <!-- doc:(highlighted) marks a word or phrase as graphically distinct from the surrounding text, for reasons concerning which no claim is made. [3.3.2.2. Emphatic Words and Phrases 3.3.2. Emphasis, Foreign Words, and Unusual Language] -->
+  <define name="hi">
+    <element name="hi">
+      <ref name="attlist.hi"/>
+      <ref name="macro.paraContent"/>
+    </element>
+  </define>
+  <define name="attlist.hi" combine="interleave">
+    <attribute name="rend">
+      <choice>
+        <value>it</value>
+        <value>capitals</value>
+        <value>normal</value>
+      </choice>
+    </attribute>
+    <optional>
+      <attribute name="xml:lang">
+        <choice>
+          <value>ita</value>
+          <value>fra</value>
+          <value>lat</value>
+          <value>all</value>
+          <value>gre</value>
+          <value>esp</value>
+          <value>ara</value>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
+  <!-- doc:(history) groups elements describing the full history of a manuscript, manuscript part, or other object. [11.8. History] -->
+  <define name="history">
+    <element name="history">
+      <ref name="attlist.history"/>
+      <choice>
+        <oneOrMore>
+          <ref name="model.pLike"/>
+        </oneOrMore>
+        <group>
+          <optional>
+            <ref name="summary"/>
+          </optional>
+          <optional>
+            <ref name="origin"/>
+          </optional>
+          <zeroOrMore>
+            <ref name="provenance"/>
+          </zeroOrMore>
+          <optional>
+            <ref name="acquisition"/>
+          </optional>
+        </group>
+      </choice>
+    </element>
+  </define>
+  <define name="attlist.history" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+  </define>
+  <!-- doc:(identifier) supplies any form of identifier used to identify some object, such as a bibliographic item, a person, a title, an organization, etc. in a standardized way. [14.3.1. Basic Principles 2.2.4. Publication, Distribution, Licensing, etc. 2.2.5. The Series Statement 3.12.2.4. Imprint, Size of a Document, and Reprint Information] -->
+  <define name="idno">
+    <element name="idno">
+      <ref name="attlist.idno"/>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="model.gLike"/>
+          <ref name="idno"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.idno" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.sortable.attributes"/>
+    <ref name="tei_att.datable.attributes"/>
+    <ref name="tei_att.typed.attribute.subtype"/>
+    <optional>
+      <attribute name="type"/>
+    </optional>
+    <optional>
+      <attribute name="calendar"/>
+    </optional>
+  </define>
+  <!-- doc:(imprimatur) contains a formal statement authorizing the publication of a work, sometimes required to appear on a title page or its verso. [4.6. Title Pages] -->
+  <define name="imprimatur">
+    <element name="imprimatur">
+      <ref name="attlist.imprimatur"/>
+      <ref name="macro.paraContent"/>
+    </element>
+  </define>
+  <define name="attlist.imprimatur" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+  </define>
+  <!-- doc:groups information relating to the publication or distribution of a bibliographic item. [3.12.2.4. Imprint, Size of a Document, and Reprint Information] -->
+  <define name="imprint">
+    <element name="imprint">
+      <ref name="attlist.imprint"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="classCode"/>
+          <ref name="catRef"/>
+        </choice>
+      </zeroOrMore>
+      <oneOrMore>
+        <choice>
+          <ref name="model.imprintPart"/>
+          <ref name="model.dateLike"/>
+        </choice>
+        <zeroOrMore>
+          <ref name="respStmt"/>
+        </zeroOrMore>
+        <zeroOrMore>
+          <ref name="model.global"/>
+        </zeroOrMore>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.imprint" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+  </define>
+  <!-- doc:(index entry) marks a location to be indexed for whatever purpose. [3.9.2. Index Entries] -->
+  <define name="index">
+    <element name="index">
+      <ref name="attlist.index"/>
+      <zeroOrMore>
+        <zeroOrMore>
+          <ref name="term"/>
+          <optional>
+            <ref name="index"/>
+          </optional>
+        </zeroOrMore>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.index" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <optional>
+      <attribute name="indexName">
+        <ref name="teidata.name"/>
+      </attribute>
+    </optional>
+  </define>
+  <!-- doc:(institution) contains the name of an organization such as a university or library, with which a manuscript or other object is identified, generally its holding institution. [11.4. The Manuscript Identifier] -->
+  <define name="institution">
+    <element name="institution">
+      <ref name="attlist.institution"/>
+      <ref name="macro.phraseSeq.limited"/>
+    </element>
+  </define>
+  <define name="attlist.institution" combine="interleave">
+    <empty/>
+  </define>
+  <!-- doc:(item) contains one component of a list. [3.8. Lists 2.6. The Revision Description] -->
+  <define name="item">
+    <element name="item">
+      <ref name="attlist.item"/>
+      <ref name="macro.specialPara"/>
+    </element>
+  </define>
+  <define name="attlist.item" combine="interleave">
+    <empty/>
+  </define>
+  <!-- doc:(keywords) contains a list of keywords or phrases identifying the topic or nature of a text. [2.4.3. The Text Classification] -->
+  <define name="keywords">
+    <element name="keywords">
+      <ref name="attlist.keywords"/>
+      <choice>
+        <oneOrMore>
+          <ref name="term"/>
+        </oneOrMore>
+        <ref name="list"/>
+      </choice>
+    </element>
+  </define>
+  <define name="attlist.keywords" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <optional>
+      <attribute name="scheme">
+        <ref name="teidata.pointer"/>
+      </attribute>
+    </optional>
+  </define>
+  <!-- doc:(verse line) contains a single, possibly incomplete, line of verse. [3.13.1. Core Tags for Verse 3.13. Passages of Verse or Drama 7.2.5. Speech Contents] -->
+  <define name="l">
+    <element name="l">
+      <ref name="attlist.l"/>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="model.gLike"/>
+          <ref name="model.phrase"/>
+          <ref name="model.inter"/>
+          <ref name="model.global"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.l" combine="interleave">
+    <empty/>
+  </define>
+  <!-- doc:(label) contains any label or heading used to identify part of a text, typically but not exclusively in a list or glossary. [3.8. Lists] -->
+  <define name="label">
+    <element name="label">
+      <ref name="attlist.label"/>
+      <ref name="macro.phraseSeq"/>
+    </element>
+  </define>
+  <define name="attlist.label" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.typed.attributes"/>
+    <ref name="tei_att.placement.attributes"/>
+  </define>
+  <!-- doc:(language) characterizes a single language or sublanguage used within a text. [2.4.2. Language Usage] -->
+  <define name="language">
+    <element name="language">
+      <ref name="attlist.language"/>
+      <ref name="macro.phraseSeq.limited"/>
+    </element>
+  </define>
+  <define name="attlist.language" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <attribute name="ident">
+      <ref name="teidata.language"/>
+    </attribute>
+    <optional>
+      <attribute name="usage"/>
+    </optional>
+  </define>
+  <!-- doc:(layout) describes how text is laid out on the page or surface of the object, including information about any ruling, pricking, or other evidence of page-preparation techniques. [11.7.2. Writing, Decoration, and Other Notations] -->
+  <define name="layout">
+    <element name="layout">
+      <ref name="attlist.layout"/>
+      <ref name="macro.specialPara"/>
+    </element>
+  </define>
+  <define name="attlist.layout" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <optional>
+      <attribute name="columns"/>
+    </optional>
+    <optional>
+      <attribute name="streams"/>
+    </optional>
+    <optional>
+      <attribute name="ruledLines"/>
+    </optional>
+    <optional>
+      <attribute name="writtenLines"/>
+    </optional>
+  </define>
+  <!-- doc:(layout description) collects the set of layout descriptions applicable to a manuscript or other object. [11.7.2. Writing, Decoration, and Other Notations] -->
+  <define name="layoutDesc">
+    <element name="layoutDesc">
+      <ref name="attlist.layoutDesc"/>
+      <choice>
+        <oneOrMore>
+          <ref name="model.pLike"/>
+        </oneOrMore>
+        <group>
+          <optional>
+            <ref name="summary"/>
+          </optional>
+          <oneOrMore>
+            <ref name="layout"/>
+          </oneOrMore>
+        </group>
+      </choice>
+    </element>
+  </define>
+  <define name="attlist.layoutDesc" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+  </define>
+  <!--
+    doc:(line beginning) marks the beginning of a new (typographic) line in some edition or version of a text. [3.11.3. Milestone
+    Elements 7.2.5. Speech Contents]
+  -->
+  <define name="lb">
+    <element name="lb">
+      <ref name="attlist.lb"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="attlist.lb" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.typed.attributes"/>
+  </define>
+  <!-- doc:(line group) contains one or more verse lines functioning as a formal unit, e.g. a stanza, refrain, verse paragraph, etc. [3.13.1. Core Tags for Verse 3.13. Passages of Verse or Drama 7.2.5. Speech Contents] -->
+  <define name="lg">
+    <element name="lg">
+      <ref name="attlist.lg"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="model.divTop"/>
+          <ref name="model.global"/>
+        </choice>
+      </zeroOrMore>
+      <choice>
+        <ref name="model.lLike"/>
+        <ref name="_DUMMY_model.stageLike"/>
+        <ref name="model.labelLike"/>
+        <ref name="model.pPart.transcriptional"/>
+        <ref name="lg"/>
+      </choice>
+      <zeroOrMore>
+        <choice>
+          <ref name="model.lLike"/>
+          <ref name="_DUMMY_model.stageLike"/>
+          <ref name="model.labelLike"/>
+          <ref name="model.pPart.transcriptional"/>
+          <ref name="model.global"/>
+          <ref name="lg"/>
+        </choice>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="model.divBottom"/>
+        <zeroOrMore>
+          <ref name="model.global"/>
+        </zeroOrMore>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.lg" combine="interleave">
+    <ref name="tei_att.global.rendition.attribute.rend"/>
+    <optional>
+      <attribute name="xml:lang">
+        <choice>
+          <value>fra</value>
+          <value>ita</value>
+          <value>lat</value>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
+  <!-- doc:contains information about a licence or other legal agreement applicable to the text. [2.2.4. Publication, Distribution, Licensing, etc.] -->
+  <define name="licence">
+    <element name="licence">
+      <ref name="attlist.licence"/>
+      <ref name="macro.specialPara"/>
+    </element>
+  </define>
+  <define name="attlist.licence" combine="interleave">
+    <attribute name="target"/>
+  </define>
+  <!-- doc:(link) defines an association or hypertextual link among elements or passages, of some type not more precisely specifiable by other elements. [17.1. Links] -->
+  <define name="link">
+    <element name="link">
+      <ref name="attlist.link"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="attlist.link" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.pointing.attributes"/>
+    <ref name="tei_att.typed.attributes"/>
+  </define>
+  <!-- doc:(link group) defines a collection of associations or hypertextual links. [17.1. Links] -->
+  <define name="linkGrp">
+    <element name="linkGrp">
+      <ref name="attlist.linkGrp"/>
+      <zeroOrMore>
+        <ref name="model.descLike"/>
+      </zeroOrMore>
+      <oneOrMore>
+        <choice>
+          <ref name="link"/>
+          <ref name="ptr"/>
+        </choice>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.linkGrp" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.pointing.group.attributes"/>
+  </define>
+  <!-- doc:(list) contains any sequence of items organized as a list. [3.8. Lists] -->
+  <define name="list">
+    <element name="list">
+      <ref name="attlist.list"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="model.divTop"/>
+          <ref name="model.global"/>
+          <zeroOrMore>
+            <ref name="desc"/>
+          </zeroOrMore>
+        </choice>
+      </zeroOrMore>
+      <choice>
+        <oneOrMore>
+          <ref name="item"/>
+          <zeroOrMore>
+            <ref name="model.global"/>
+          </zeroOrMore>
+        </oneOrMore>
+        <group>
+          <optional>
+            <ref name="headLabel"/>
+          </optional>
+          <optional>
+            <ref name="headItem"/>
+          </optional>
+          <oneOrMore>
+            <ref name="label"/>
+            <zeroOrMore>
+              <ref name="model.global"/>
+            </zeroOrMore>
+            <ref name="item"/>
+            <zeroOrMore>
+              <ref name="model.global"/>
+            </zeroOrMore>
+          </oneOrMore>
+        </group>
+      </choice>
+      <zeroOrMore>
+        <ref name="model.divBottom"/>
+        <zeroOrMore>
+          <ref name="model.global"/>
+        </zeroOrMore>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.list" combine="interleave">
+    <attribute name="rend">
+      <choice>
+        <value>bulleted</value>
+        <value>numbered</value>
+      </choice>
+    </attribute>
+  </define>
+  <!-- doc:(citation list) contains a list of bibliographic citations of any kind. [3.12.1. Methods of Encoding Bibliographic References and Lists of References 2.2.7. The Source Description 16.3.2. Declarable Elements] -->
+  <define name="listBibl">
+    <element name="listBibl">
+      <ref name="attlist.listBibl"/>
+      <zeroOrMore>
+        <ref name="model.headLike"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="desc"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <choice>
+          <ref name="model.milestoneLike"/>
+          <ref name="relation"/>
+          <ref name="listRelation"/>
+        </choice>
+      </zeroOrMore>
+      <oneOrMore>
+        <oneOrMore>
+          <ref name="model.biblLike"/>
+        </oneOrMore>
+        <zeroOrMore>
+          <choice>
+            <ref name="model.milestoneLike"/>
+            <ref name="relation"/>
+            <ref name="listRelation"/>
+          </choice>
+        </zeroOrMore>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.listBibl" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.sortable.attributes"/>
+    <ref name="tei_att.typed.attributes"/>
+  </define>
+  <!-- doc:groups a number of change descriptions associated with either the creation of a source text or the revision of an encoded text. [2.6. The Revision Description 12.7. Identifying Changes and Revisions] -->
+  <define name="listChange">
+    <element name="listChange">
+      <ref name="attlist.listChange"/>
+      <zeroOrMore>
+        <ref name="desc"/>
+      </zeroOrMore>
+      <oneOrMore>
+        <choice>
+          <ref name="listChange"/>
+          <ref name="change"/>
+        </choice>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.listChange" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.sortable.attributes"/>
+    <ref name="tei_att.typed.attributes"/>
+    <optional>
+      <attribute name="ordered" a:defaultValue="true">
+        <ref name="teidata.truthValue"/>
+      </attribute>
+    </optional>
+  </define>
+  <!-- doc:(list of objects) contains a list of descriptions, each of which provides information about an identifiable physical object. [14.3.6. Objects] -->
+  <define name="listObject">
+    <element name="listObject">
+      <ref name="attlist.listObject"/>
+      <zeroOrMore>
+        <ref name="model.headLike"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="desc"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <choice>
+          <ref name="relation"/>
+          <ref name="listRelation"/>
+        </choice>
+      </zeroOrMore>
+      <oneOrMore>
+        <oneOrMore>
+          <ref name="model.objectLike"/>
+        </oneOrMore>
+        <zeroOrMore>
+          <choice>
+            <ref name="relation"/>
+            <ref name="listRelation"/>
+          </choice>
+        </zeroOrMore>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.listObject" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.typed.attributes"/>
+    <ref name="tei_att.sortable.attributes"/>
+  </define>
+  <!-- doc:(list of persons) contains a list of descriptions, each of which provides information about an identifiable person or a group of people, for example the participants in a language interaction, or the people referred to in a historical source. [14.3.2. The Person Element 16.2. Contextual Information 2.4. The Profile Description 16.3.2. Declarable Elements] -->
+  <define name="listPerson">
+    <element name="listPerson">
+      <ref name="attlist.listPerson"/>
+      <zeroOrMore>
+        <ref name="model.headLike"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="desc"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <choice>
+          <ref name="relation"/>
+          <ref name="listRelation"/>
+        </choice>
+      </zeroOrMore>
+      <oneOrMore>
+        <oneOrMore>
+          <choice>
+            <ref name="model.personLike"/>
+            <ref name="listPerson"/>
+          </choice>
+        </oneOrMore>
+        <zeroOrMore>
+          <choice>
+            <ref name="relation"/>
+            <ref name="listRelation"/>
+          </choice>
+        </zeroOrMore>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.listPerson" combine="interleave">
+    <optional>
+      <attribute name="type"/>
+    </optional>
+    <optional>
+      <attribute name="subtype"/>
+    </optional>
+  </define>
+  <!-- doc:(list of places) contains a list of places, optionally followed by a list of relationships (other than containment) defined amongst them. [2.2.7. The Source Description 14.3.4. Places] -->
+  <define name="listPlace">
+    <element name="listPlace">
+      <ref name="attlist.listPlace"/>
+      <zeroOrMore>
+        <ref name="model.headLike"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="desc"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <choice>
+          <ref name="relation"/>
+          <ref name="listRelation"/>
+        </choice>
+      </zeroOrMore>
+      <oneOrMore>
+        <oneOrMore>
+          <choice>
+            <ref name="model.placeLike"/>
+            <ref name="listPlace"/>
+          </choice>
+        </oneOrMore>
+        <zeroOrMore>
+          <choice>
+            <ref name="relation"/>
+            <ref name="listRelation"/>
+          </choice>
+        </zeroOrMore>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.listPlace" combine="interleave">
+    <optional>
+      <attribute name="type"/>
+    </optional>
+    <optional>
+      <attribute name="subtype"/>
+    </optional>
+  </define>
+  <!-- doc:(location) defines the location of a place as a set of geographical coordinates, in terms of other named geo-political entities, or as an address. [14.3.4. Places] -->
+  <define name="location">
+    <element name="location">
+      <ref name="attlist.location"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="precision"/>
+          <ref name="model.labelLike"/>
+          <ref name="model.placeNamePart"/>
+          <ref name="_DUMMY_model.offsetLike"/>
+          <ref name="model.measureLike"/>
+          <ref name="model.addressLike"/>
+          <ref name="model.noteLike"/>
+          <ref name="model.biblLike"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.location" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.typed.attributes"/>
+    <ref name="tei_att.datable.attributes"/>
+    <optional>
+      <attribute name="calendar"/>
+    </optional>
+  </define>
+  <!-- doc:(monographic level) contains bibliographic elements describing an item (e.g. a book or journal) published as an independent item (i.e. as a separate physical object). [3.12.2.1. Analytic, Monographic, and Series Levels] -->
+  <define name="monogr">
+    <element name="monogr">
+      <ref name="attlist.monogr"/>
+      <optional>
+        <choice>
+          <group>
+            <choice>
+              <ref name="author"/>
+              <ref name="editor"/>
+              <ref name="meeting"/>
+              <ref name="respStmt"/>
+            </choice>
+            <zeroOrMore>
+              <choice>
+                <ref name="author"/>
+                <ref name="editor"/>
+                <ref name="meeting"/>
+                <ref name="respStmt"/>
+              </choice>
+            </zeroOrMore>
+            <oneOrMore>
+              <ref name="title"/>
+            </oneOrMore>
+            <zeroOrMore>
+              <choice>
+                <ref name="model.ptrLike"/>
+                <ref name="idno"/>
+                <ref name="textLang"/>
+                <ref name="editor"/>
+                <ref name="respStmt"/>
+              </choice>
+            </zeroOrMore>
+          </group>
+          <group>
+            <oneOrMore>
+              <choice>
+                <ref name="title"/>
+                <ref name="model.ptrLike"/>
+                <ref name="idno"/>
+              </choice>
+            </oneOrMore>
+            <zeroOrMore>
+              <choice>
+                <ref name="textLang"/>
+                <ref name="author"/>
+                <ref name="editor"/>
+                <ref name="meeting"/>
+                <ref name="respStmt"/>
+              </choice>
+            </zeroOrMore>
+          </group>
+          <group>
+            <ref name="authority"/>
+            <ref name="idno"/>
+          </group>
+        </choice>
+      </optional>
+      <zeroOrMore>
+        <ref name="availability"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="model.noteLike"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="edition"/>
+        <zeroOrMore>
+          <choice>
+            <ref name="idno"/>
+            <ref name="model.ptrLike"/>
+            <ref name="editor"/>
+            <ref name="sponsor"/>
+            <ref name="funder"/>
+            <ref name="respStmt"/>
+          </choice>
+        </zeroOrMore>
+      </zeroOrMore>
+      <ref name="imprint"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="imprint"/>
+          <ref name="extent"/>
+          <ref name="biblScope"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.monogr" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+  </define>
+  <!-- doc:(manuscript contents) describes the intellectual content of a manuscript, manuscript part, or other object either as a series of paragraphs or as a series of structured manuscript items. [11.6. Intellectual Content] -->
+  <define name="msContents">
+    <element name="msContents">
+      <ref name="attlist.msContents"/>
+      <choice>
+        <oneOrMore>
+          <ref name="model.pLike"/>
+        </oneOrMore>
+        <group>
+          <optional>
+            <ref name="summary"/>
+          </optional>
+          <optional>
+            <ref name="textLang"/>
+          </optional>
+          <optional>
+            <ref name="titlePage"/>
+          </optional>
+          <zeroOrMore>
+            <choice>
+              <ref name="msItem"/>
+              <ref name="msItemStruct"/>
+            </choice>
+          </zeroOrMore>
+        </group>
+      </choice>
+    </element>
+  </define>
+  <define name="attlist.msContents" combine="interleave">
+    <empty/>
+  </define>
+  <!-- doc:(manuscript description) contains a description of a single identifiable manuscript or other text-bearing object such as an early printed book. [11.1. Overview] -->
+  <define name="msDesc">
+    <element name="msDesc">
+      <ref name="attlist.msDesc"/>
+      <ref name="msIdentifier"/>
+      <zeroOrMore>
+        <ref name="model.headLike"/>
+      </zeroOrMore>
+      <choice>
+        <oneOrMore>
+          <ref name="model.pLike"/>
+        </oneOrMore>
+        <zeroOrMore>
+          <choice>
+            <ref name="msContents"/>
+            <ref name="physDesc"/>
+            <ref name="history"/>
+            <ref name="additional"/>
+            <ref name="msPart"/>
+            <ref name="msFrag"/>
+          </choice>
+        </zeroOrMore>
+      </choice>
+    </element>
+  </define>
+  <define name="attlist.msDesc" combine="interleave">
+    <empty/>
+  </define>
+  <!-- doc:(manuscript identifier) contains the information required to identify the manuscript or similar object being described. [11.4. The Manuscript Identifier] -->
+  <define name="msIdentifier">
+    <element name="msIdentifier">
+      <ref name="attlist.msIdentifier"/>
+      <group>
+        <ref name="model.placeNamePart_sequenceOptional"/>
+        <optional>
+          <ref name="institution"/>
+        </optional>
+        <optional>
+          <ref name="repository"/>
+        </optional>
+        <zeroOrMore>
+          <ref name="collection"/>
+        </zeroOrMore>
+        <zeroOrMore>
+          <ref name="idno"/>
+        </zeroOrMore>
+      </group>
+      <zeroOrMore>
+        <choice>
+          <ref name="msName"/>
+          <ref name="objectName"/>
+          <ref name="altIdentifier"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.msIdentifier" combine="interleave">
+    <empty/>
+  </define>
+  <!-- doc:(name, proper noun) contains a proper noun or noun phrase. [3.6.1. Referring Strings] -->
+  <define name="name">
+    <element name="name">
+      <ref name="attlist.name"/>
+      <ref name="macro.phraseSeq"/>
+    </element>
+  </define>
+  <define name="attlist.name" combine="interleave">
+    <optional>
+      <attribute name="calendar"/>
+    </optional>
+  </define>
+  <!-- doc:(normalization) indicates the extent of normalization or regularization of the original source carried out in converting it to electronic form. [2.3.3. The Editorial Practices Declaration 16.3.2. Declarable Elements] -->
+  <define name="normalization">
+    <element name="normalization">
+      <ref name="attlist.normalization"/>
+      <oneOrMore>
+        <ref name="model.pLike"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.normalization" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <optional>
+      <attribute name="method" a:defaultValue="silent">
+        <choice>
+          <value>silent</value>
+          <value>markup</value>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
+  <!-- doc:(note) contains a note or annotation. [3.9.1. Notes and Simple Annotation 2.2.6. The Notes Statement 3.12.2.8. Notes and Statement of Language 10.3.5.4. Notes within Entries] -->
+  <define name="note">
+    <element name="note">
+      <ref name="attlist.note"/>
+      <ref name="macro.specialPara"/>
+    </element>
+  </define>
+  <define name="attlist.note" combine="interleave">
+    <ref name="tei_att.global.rendition.attribute.rend"/>
+    <optional>
+      <attribute name="xml:id">
+        <data type="ID"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="type"/>
+    </optional>
+    <optional>
+      <attribute name="xml:lang">
+        <choice>
+          <value>fra</value>
+          <value>ita</value>
+          <value>lat</value>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
+  <!-- doc:(note group) contains a group of notes [3.9.1.1. Encoding Grouped Notes] -->
+  <define name="noteGrp">
+    <element name="noteGrp">
+      <ref name="attlist.noteGrp"/>
+      <zeroOrMore>
+        <ref name="desc"/>
+      </zeroOrMore>
+      <oneOrMore>
+        <choice>
+          <ref name="note"/>
+          <ref name="noteGrp"/>
+        </choice>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.noteGrp" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.placement.attributes"/>
+    <ref name="tei_att.pointing.attributes"/>
+    <ref name="tei_att.typed.attributes"/>
+    <ref name="tei_att.anchoring.attributes"/>
+  </define>
+  <!-- doc:(notes statement) collects together any notes providing information about a text additional to that recorded in other parts of the bibliographic description. [2.2.6. The Notes Statement 2.2. The File Description] -->
+  <define name="notesStmt">
+    <element name="notesStmt">
+      <ref name="attlist.notesStmt"/>
+      <oneOrMore>
+        <choice>
+          <ref name="model.noteLike"/>
+          <ref name="relatedItem"/>
+        </choice>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.notesStmt" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+  </define>
+  <!-- doc:contains a description of a single identifiable physical object. [14.3.6. Objects] -->
+  <define name="object">
+    <element name="object">
+      <ref name="attlist.object"/>
+      <oneOrMore>
+        <ref name="objectIdentifier"/>
+      </oneOrMore>
+      <zeroOrMore>
+        <ref name="model.headLike"/>
+      </zeroOrMore>
+      <choice>
+        <oneOrMore>
+          <ref name="model.pLike"/>
+        </oneOrMore>
+        <zeroOrMore>
+          <choice>
+            <ref name="msContents"/>
+            <ref name="physDesc"/>
+            <ref name="history"/>
+            <ref name="additional"/>
+          </choice>
+        </zeroOrMore>
+      </choice>
+      <zeroOrMore>
+        <choice>
+          <ref name="model.noteLike"/>
+          <ref name="model.biblLike"/>
+          <ref name="linkGrp"/>
+          <ref name="link"/>
+        </choice>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="object"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.object" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.sortable.attributes"/>
+    <ref name="tei_att.typed.attributes"/>
+    <ref name="tei_att.canonical.attributes"/>
+  </define>
+  <!-- doc:(object description) contains a description of the physical components making up the object which is being described. [11.7.1. Object Description] -->
+  <define name="objectDesc">
+    <element name="objectDesc">
+      <ref name="attlist.objectDesc"/>
+      <choice>
+        <oneOrMore>
+          <ref name="model.pLike"/>
+        </oneOrMore>
+        <group>
+          <optional>
+            <ref name="supportDesc"/>
+          </optional>
+          <optional>
+            <ref name="layoutDesc"/>
+          </optional>
+        </group>
+      </choice>
+    </element>
+  </define>
+  <define name="attlist.objectDesc" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <optional>
+      <attribute name="form"/>
+    </optional>
+  </define>
+  <!-- doc:(name of an object) contains a proper noun or noun phrase used to refer to an object. [14.2.5. Object Names] -->
+  <define name="objectName">
+    <element name="objectName">
+      <ref name="attlist.objectName"/>
+      <ref name="macro.phraseSeq"/>
+    </element>
+  </define>
+  <define name="attlist.objectName" combine="interleave">
+    <optional>
+      <attribute name="calendar"/>
+    </optional>
+  </define>
+  <!-- doc:(occupation) contains an informal description of a person's trade, profession or occupation. [16.2.2. The Participant Description] -->
+  <define name="occupation">
+    <element name="occupation">
+      <ref name="attlist.occupation"/>
+      <ref name="macro.specialPara"/>
+    </element>
+  </define>
+  <define name="attlist.occupation" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.datable.attributes"/>
+    <ref name="tei_att.naming.attributes"/>
+    <ref name="tei_att.typed.attribute.subtype"/>
+    <optional>
+      <attribute name="type"/>
+    </optional>
+    <optional>
+      <attribute name="calendar"/>
+    </optional>
+    <optional>
+      <attribute name="scheme">
+        <ref name="teidata.pointer"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="code">
+        <ref name="teidata.pointer"/>
+      </attribute>
+    </optional>
+  </define>
+  <!-- doc:(opener) groups together dateline, byline, salutation, and similar phrases appearing as a preliminary group at the start of a division, especially of a letter. [4.2. Elements Common to All Divisions] -->
+  <define name="opener">
+    <element name="opener">
+      <ref name="attlist.opener"/>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="model.gLike"/>
+          <ref name="model.phrase"/>
+          <ref name="argument"/>
+          <ref name="byline"/>
+          <ref name="dateline"/>
+          <ref name="epigraph"/>
+          <ref name="salute"/>
+          <ref name="signed"/>
+          <ref name="model.global"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.opener" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+  </define>
+  <!--
+    doc:(original form) contains a reading which is marked as following the original, rather than being normalized or corrected. [3.5.2. Regularization and
+    Normalization 13. Critical Apparatus]
+  -->
+  <define name="orig">
+    <element name="orig">
+      <ref name="attlist.orig"/>
+      <ref name="macro.paraContent"/>
+    </element>
+  </define>
+  <define name="attlist.orig" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+  </define>
+  <!-- doc:(paragraph) marks paragraphs in prose. [3.1. Paragraphs 7.2.5. Speech Contents] -->
+  <define name="p">
+    <element name="p">
+      <ref name="attlist.p"/>
+      <ref name="macro.paraContent"/>
+    </element>
+  </define>
+  <define name="attlist.p" combine="interleave">
+    <optional>
+      <attribute name="xml:id"/>
+    </optional>
+    <optional>
+      <attribute name="xml:lang">
+        <choice>
+          <value>ita</value>
+          <value>fra</value>
+          <value>lat</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="rend">
+        <choice>
+          <value>it</value>
+          <value>capitals</value>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
+  <!-- doc:(participation description) describes the identifiable speakers, voices, or other participants in any kind of text or other persons named or otherwise referred to in a text, edition, or metadata. [16.2. Contextual Information] -->
+  <define name="particDesc">
+    <element name="particDesc">
+      <ref name="attlist.particDesc"/>
+      <choice>
+        <oneOrMore>
+          <ref name="model.pLike"/>
+        </oneOrMore>
+        <oneOrMore>
+          <choice>
+            <ref name="model.personLike"/>
+            <ref name="listPerson"/>
+            <ref name="listOrg"/>
+          </choice>
+        </oneOrMore>
+      </choice>
+    </element>
+  </define>
+  <define name="attlist.particDesc" combine="interleave">
+    <optional>
+      <attribute name="xml:base"/>
+    </optional>
+  </define>
+  <!--
+    doc:(page beginning) marks the beginning of a new page in a paginated document. [3.11.3. Milestone
+    Elements]
+  -->
+  <define name="pb">
+    <element name="pb">
+      <ref name="attlist.pb"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="attlist.pb" combine="interleave">
+    <ref name="tei_att.global.attribute.n"/>
+    <optional>
+      <attribute name="type">
+        <choice>
+          <value>blankpage</value>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
+  <!-- doc:(personal name) contains a proper noun or proper-noun phrase referring to a person, possibly including one or more of the person's forenames, surnames, honorifics, added names, etc. [14.2.1. Personal Names] -->
+  <define name="persName">
+    <element name="persName">
+      <ref name="attlist.persName"/>
+      <ref name="macro.phraseSeq"/>
+    </element>
+  </define>
+  <define name="attlist.persName" combine="interleave">
+    <optional>
+      <attribute name="ref">
+        <ref name="teidata.pointer"/>
+      </attribute>
+    </optional>
+  </define>
+  <!-- doc:(person) provides information about an identifiable individual, for example a participant in a language interaction, or a person referred to in a historical source. [14.3.2. The Person Element 16.2.2. The Participant Description] -->
+  <define name="person">
+    <element name="person">
+      <ref name="attlist.person"/>
+      <choice>
+        <oneOrMore>
+          <ref name="model.pLike"/>
+        </oneOrMore>
+        <zeroOrMore>
+          <choice>
+            <ref name="model.personPart"/>
+            <ref name="model.global"/>
+            <ref name="ptr"/>
+          </choice>
+        </zeroOrMore>
+      </choice>
+    </element>
+  </define>
+  <define name="attlist.person" combine="interleave">
+    <attribute name="xml:id">
+      <data type="ID"/>
+    </attribute>
+    <optional>
+      <attribute name="role">
+        <data type="NMTOKENS"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="sex"/>
+    </optional>
+    <optional>
+      <attribute name="age"/>
+    </optional>
+  </define>
+  <!-- doc:(place) contains data about a geographic location [14.3.4. Places] -->
+  <define name="place">
+    <element name="place">
+      <ref name="attlist.place"/>
+      <zeroOrMore>
+        <ref name="model.headLike"/>
+      </zeroOrMore>
+      <choice>
+        <zeroOrMore>
+          <ref name="model.pLike"/>
+        </zeroOrMore>
+        <zeroOrMore>
+          <choice>
+            <ref name="model.labelLike"/>
+            <ref name="model.placeStateLike"/>
+            <ref name="_DUMMY_model.eventLike"/>
+            <ref name="name"/>
+          </choice>
+        </zeroOrMore>
+      </choice>
+      <zeroOrMore>
+        <choice>
+          <ref name="model.noteLike"/>
+          <ref name="model.biblLike"/>
+          <ref name="idno"/>
+          <ref name="ptr"/>
+          <ref name="linkGrp"/>
+          <ref name="link"/>
+        </choice>
+      </zeroOrMore>
+      <zeroOrMore>
+        <choice>
+          <ref name="model.placeLike"/>
+          <ref name="listPlace"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.place" combine="interleave">
+    <attribute name="xml:id">
+      <data type="ID"/>
+    </attribute>
+    <optional>
+      <attribute name="type"/>
+    </optional>
+  </define>
+  <!-- doc:(place name) contains an absolute or relative place name. [14.2.3. Place Names] -->
+  <define name="placeName">
+    <element name="placeName">
+      <ref name="attlist.placeName"/>
+      <ref name="macro.phraseSeq"/>
+    </element>
+  </define>
+  <define name="attlist.placeName" combine="interleave">
+    <optional>
+      <attribute name="ref">
+        <ref name="teidata.pointer"/>
+      </attribute>
+    </optional>
+  </define>
+  <!-- doc:contains a postscript, e.g. to a letter. [4.2. Elements Common to All Divisions] -->
+  <define name="postscript">
+    <element name="postscript">
+      <ref name="attlist.postscript"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="model.global"/>
+          <ref name="model.divTopPart"/>
+        </choice>
+      </zeroOrMore>
+      <ref name="model.common"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="model.global"/>
+          <ref name="model.common"/>
+        </choice>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="model.divBottomPart"/>
+        <zeroOrMore>
+          <ref name="model.global"/>
+        </zeroOrMore>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.postscript" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+  </define>
+  <!-- doc:(principal researcher) supplies the name of the principal researcher responsible for the creation of an electronic text. [2.2.1. The Title Statement] -->
+  <define name="principal">
+    <element name="principal">
+      <ref name="attlist.principal"/>
+      <ref name="macro.phraseSeq.limited"/>
+    </element>
+  </define>
+  <define name="attlist.principal" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.canonical.attributes"/>
+    <ref name="tei_att.datable.attributes"/>
+    <optional>
+      <attribute name="calendar"/>
+    </optional>
+  </define>
+  <!-- doc:(text-profile description) provides a detailed description of non-bibliographic aspects of a text, specifically the languages and sublanguages used, the situation in which it was produced, the participants and their setting. [2.4. The Profile Description 2.1.1. The TEI Header and Its Components] -->
+  <define name="profileDesc">
+    <element name="profileDesc">
+      <ref name="attlist.profileDesc"/>
+      <ref name="model.profileDescPart_sequenceOptional"/>
+    </element>
+  </define>
+  <define name="attlist.profileDesc" combine="interleave">
+    <empty/>
+  </define>
+  <!-- doc:(project description) describes in detail the aim or purpose for which an electronic file was encoded, together with any other relevant information concerning the process by which it was assembled or collected. [2.3.1. The Project Description 2.3. The Encoding Description 16.3.2. Declarable Elements] -->
+  <define name="projectDesc">
+    <element name="projectDesc">
+      <ref name="attlist.projectDesc"/>
+      <oneOrMore>
+        <ref name="model.pLike"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.projectDesc" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+  </define>
+  <!-- ptr -->
+  <define name="ptr">
+    <element name="ptr">
+      <ref name="attlist.ptr"/>
+      <ref name="macro.paraContent"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="attlist.ptr" combine="interleave">
+    <ref name="tei_att.pointing.attribute.target"/>
+  </define>
+  <!-- doc:(publication place) contains the name of the place where a bibliographic item was published. [3.12.2.4. Imprint, Size of a Document, and Reprint Information] -->
+  <define name="pubPlace">
+    <element name="pubPlace">
+      <ref name="attlist.pubPlace"/>
+      <ref name="macro.phraseSeq"/>
+    </element>
+  </define>
+  <define name="attlist.pubPlace" combine="interleave">
+    <empty/>
+  </define>
+  <!-- doc:(publication statement) groups information concerning the publication or distribution of an electronic or other text. [2.2.4. Publication, Distribution, Licensing, etc. 2.2. The File Description] -->
+  <define name="publicationStmt">
+    <element name="publicationStmt">
+      <ref name="attlist.publicationStmt"/>
+      <choice>
+        <oneOrMore>
+          <ref name="model.publicationStmtPart.agency"/>
+          <zeroOrMore>
+            <ref name="model.publicationStmtPart.detail"/>
+          </zeroOrMore>
+        </oneOrMore>
+        <oneOrMore>
+          <ref name="model.pLike"/>
+        </oneOrMore>
+      </choice>
+    </element>
+  </define>
+  <define name="attlist.publicationStmt" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+  </define>
+  <!-- doc:(publisher) provides the name of the organization responsible for the publication or distribution of a bibliographic item. [3.12.2.4. Imprint, Size of a Document, and Reprint Information 2.2.4. Publication, Distribution, Licensing, etc.] -->
+  <define name="publisher">
+    <element name="publisher">
+      <ref name="attlist.publisher"/>
+      <ref name="macro.phraseSeq"/>
+    </element>
+  </define>
+  <define name="attlist.publisher" combine="interleave">
+    <empty/>
+  </define>
+  <!-- doc:specifies editorial practice adopted with respect to punctuation marks in the original. [2.3.3. The Editorial Practices Declaration 3.2. Treatment of Punctuation] -->
+  <define name="punctuation">
+    <element name="punctuation">
+      <ref name="attlist.punctuation"/>
+      <zeroOrMore>
+        <ref name="model.pLike"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.punctuation" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <optional>
+      <attribute name="marks">
+        <choice>
+          <value>none</value>
+          <value>some</value>
+          <value>all</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="placement">
+        <choice>
+          <value>internal</value>
+          <value>external</value>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
+  <!-- doc:(quotation) contains a phrase or passage attributed by the narrator or author to some agency external to the text. [3.3.3. Quotation 4.3.1. Grouped Texts] -->
+  <define name="quote">
+    <element name="quote">
+      <ref name="attlist.quote"/>
+      <ref name="macro.specialPara"/>
+    </element>
+  </define>
+  <define name="attlist.quote" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.typed.attributes"/>
+  </define>
+  <!-- doc:(reference) defines a reference to another location, possibly modified by additional text or comment. [3.7. Simple Links and Cross-References 17.1. Links] -->
+  <define name="ref">
+    <element name="ref">
+      <ref name="attlist.ref"/>
+      <ref name="macro.paraContent"/>
+    </element>
+  </define>
+  <define name="attlist.ref" combine="interleave">
+    <ref name="tei_att.pointing.attribute.target"/>
+  </define>
+  <!--
+    doc:(regularization) contains a reading which has been regularized or normalized in some sense. [3.5.2. Regularization and
+    Normalization 13. Critical Apparatus]
+  -->
+  <define name="reg">
+    <element name="reg">
+      <ref name="attlist.reg"/>
+      <ref name="macro.paraContent"/>
+    </element>
+  </define>
+  <define name="attlist.reg" combine="interleave">
+    <empty/>
+  </define>
+  <!-- doc:contains or references some other bibliographic item which is related to the present one in some specified manner, for example as a constituent or alternative version of it. [3.12.2.7. Related Items] -->
+  <define name="relatedItem">
+    <element name="relatedItem">
+      <ref name="attlist.relatedItem"/>
+      <optional>
+        <choice>
+          <ref name="model.biblLike"/>
+          <ref name="model.ptrLike"/>
+        </choice>
+      </optional>
+    </element>
+  </define>
+  <define name="attlist.relatedItem" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.typed.attributes"/>
+    <optional>
+      <attribute name="target">
+        <ref name="teidata.pointer"/>
+      </attribute>
+    </optional>
+  </define>
+  <!-- doc:(rendition) supplies information about the rendition or appearance of one or more elements in the source text. [2.3.4. The Tagging Declaration] -->
+  <define name="rendition">
+    <element name="rendition">
+      <ref name="attlist.rendition"/>
+      <ref name="macro.limitedContent"/>
+    </element>
+  </define>
+  <define name="attlist.rendition" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <optional>
+      <attribute name="scope"/>
+    </optional>
+    <optional>
+      <attribute name="selector">
+        <ref name="teidata.text"/>
+      </attribute>
+    </optional>
+  </define>
+  <!-- doc:(repository) contains the name of a repository within which manuscripts or other objects are stored, possibly forming part of an institution. [11.4. The Manuscript Identifier] -->
+  <define name="repository">
+    <element name="repository">
+      <ref name="attlist.repository"/>
+      <ref name="macro.phraseSeq.limited"/>
+    </element>
+  </define>
+  <define name="attlist.repository" combine="interleave">
+    <empty/>
+  </define>
+  <!-- doc:(responsibility) contains a phrase describing the nature of a person's intellectual responsibility, or an organization's role in the production or distribution of a work. [3.12.2.2. Titles, Authors, and Editors 2.2.1. The Title Statement 2.2.2. The Edition Statement 2.2.5. The Series Statement] -->
+  <define name="resp">
+    <element name="resp">
+      <ref name="attlist.resp"/>
+      <ref name="macro.phraseSeq.limited"/>
+    </element>
+  </define>
+  <define name="attlist.resp" combine="interleave">
+    <empty/>
+  </define>
+  <!-- doc:(statement of responsibility) supplies a statement of responsibility for the intellectual content of a text, edition, recording, or series, where the specialized elements for authors, editors, etc. do not suffice or do not apply. May also be used to encode information about individuals or organizations which have played a role in the production or distribution of a bibliographic work. [3.12.2.2. Titles, Authors, and Editors 2.2.1. The Title Statement 2.2.2. The Edition Statement 2.2.5. The Series Statement] -->
+  <define name="respStmt">
+    <element name="respStmt">
+      <ref name="attlist.respStmt"/>
+      <choice>
+        <group>
+          <oneOrMore>
+            <ref name="resp"/>
+          </oneOrMore>
+          <oneOrMore>
+            <ref name="model.nameLike.agent"/>
+          </oneOrMore>
+        </group>
+        <group>
+          <oneOrMore>
+            <ref name="model.nameLike.agent"/>
+          </oneOrMore>
+          <oneOrMore>
+            <ref name="resp"/>
+          </oneOrMore>
+        </group>
+      </choice>
+      <zeroOrMore>
+        <ref name="note"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.respStmt" combine="interleave">
+    <empty/>
+  </define>
+  <!-- doc:(revision description) summarizes the revision history for a file. [2.6. The Revision Description 2.1.1. The TEI Header and Its Components] -->
+  <define name="revisionDesc">
+    <element name="revisionDesc">
+      <ref name="attlist.revisionDesc"/>
+      <choice>
+        <oneOrMore>
+          <ref name="list"/>
+        </oneOrMore>
+        <oneOrMore>
+          <ref name="listChange"/>
+        </oneOrMore>
+        <oneOrMore>
+          <ref name="change"/>
+        </oneOrMore>
+      </choice>
+    </element>
+  </define>
+  <define name="attlist.revisionDesc" combine="interleave">
+    <empty/>
+  </define>
+  <!-- doc:(row) contains one row of a table. [15.1.1. TEI Tables] -->
+  <define name="row">
+    <element name="row">
+      <ref name="attlist.row"/>
+      <oneOrMore>
+        <ref name="cell"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.row" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.tableDecoration.attributes"/>
+  </define>
+  <!-- doc:(salutation) contains a salutation or greeting prefixed to a foreword, dedicatory epistle, or other division of a text, or the salutation in the closing of a letter, preface, etc. [4.2.2. Openers and Closers] -->
+  <define name="salute">
+    <element name="salute">
+      <ref name="attlist.salute"/>
+      <ref name="macro.paraContent"/>
+    </element>
+  </define>
+  <define name="attlist.salute" combine="interleave">
+    <ref name="tei_att.global.rendition.attribute.rend"/>
+  </define>
+  <!-- doc:(schema reference) describes or points to a related customization or schema file [2.3.10. The Schema Specification] -->
+  <define name="schemaRef">
+    <element name="schemaRef">
+      <ref name="attlist.schemaRef"/>
+      <optional>
+        <ref name="model.descLike"/>
+      </optional>
+    </element>
+  </define>
+  <define name="attlist.schemaRef" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.typed.attributes"/>
+    <ref name="tei_att.resourced.attributes"/>
+    <optional>
+      <attribute name="key">
+        <ref name="teidata.xmlName"/>
+      </attribute>
+    </optional>
+  </define>
+  <!-- doc:(segmentation) describes the principles according to which the text has been segmented, for example into sentences, tone-units, graphemic strata, etc. [2.3.3. The Editorial Practices Declaration 16.3.2. Declarable Elements] -->
+  <define name="segmentation">
+    <element name="segmentation">
+      <ref name="attlist.segmentation"/>
+      <oneOrMore>
+        <ref name="model.pLike"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.segmentation" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+  </define>
+  <!-- doc:(setting description) describes the setting or settings within which a language interaction takes place, or other places otherwise referred to in a text, edition, or metadata. [16.2. Contextual Information 2.4. The Profile Description] -->
+  <define name="settingDesc">
+    <element name="settingDesc">
+      <ref name="attlist.settingDesc"/>
+      <choice>
+        <oneOrMore>
+          <ref name="model.pLike"/>
+        </oneOrMore>
+        <oneOrMore>
+          <choice>
+            <ref name="setting"/>
+            <ref name="model.placeLike"/>
+            <ref name="listPlace"/>
+          </choice>
+        </oneOrMore>
+      </choice>
+    </element>
+  </define>
+  <!-- doc:(Latin for thus or so) contains text reproduced although apparently incorrect or inaccurate. [3.5.1. Apparent Errors] -->
+  <define name="attlist.settingDesc" combine="interleave">
+    <optional>
+      <attribute name="xml:base"/>
+    </optional>
+  </define>
+  <!-- doc:(settlement) contains the name of a settlement such as a city, town, or village identified as a single geo-political or administrative unit. [14.2.3. Place Names] -->
+  <define name="settlement">
+    <element name="settlement">
+      <ref name="attlist.settlement"/>
+      <ref name="macro.phraseSeq"/>
+    </element>
+  </define>
+  <define name="attlist.settlement" combine="interleave">
+    <ref name="tei_att.naming.attributes"/>
+  </define>
+  <define name="sic">
+    <element name="sic">
+      <ref name="attlist.sic"/>
+      <ref name="macro.paraContent"/>
+    </element>
+  </define>
+  <define name="attlist.sic" combine="interleave">
+    <empty/>
+  </define>
+  <!-- doc:(signature) contains the closing salutation, etc., appended to a foreword, dedicatory epistle, or other division of a text. [4.2.2. Openers and Closers] -->
+  <define name="signed">
+    <element name="signed">
+      <ref name="attlist.signed"/>
+      <ref name="macro.paraContent"/>
+    </element>
+  </define>
+  <define name="attlist.signed" combine="interleave">
+    <empty/>
+  </define>
+  <!-- doc:(source description) describes the source(s) from which an electronic text was derived or generated, typically a bibliographic description in the case of a digitized text, or a phrase such as born digital for a text which has no previous existence. [2.2.7. The Source Description] -->
+  <define name="sourceDesc">
+    <element name="sourceDesc">
+      <ref name="attlist.sourceDesc"/>
+      <choice>
+        <oneOrMore>
+          <ref name="model.pLike"/>
+        </oneOrMore>
+        <oneOrMore>
+          <choice>
+            <ref name="model.biblLike"/>
+            <ref name="_DUMMY_model.sourceDescPart"/>
+            <ref name="model.listLike"/>
+          </choice>
+        </oneOrMore>
+      </choice>
+    </element>
+  </define>
+  <define name="attlist.sourceDesc" combine="interleave">
+    <empty/>
+  </define>
+  <!-- doc:(state) contains a description of some status or quality attributed to a person, place, or organization often at some specific time or for a specific date range. [14.3.1. Basic Principles 14.3.2.1. Personal Characteristics] -->
+  <define name="state">
+    <element name="state">
+      <ref name="attlist.state"/>
+      <zeroOrMore>
+        <ref name="precision"/>
+      </zeroOrMore>
+      <choice>
+        <oneOrMore>
+          <ref name="state"/>
+        </oneOrMore>
+        <group>
+          <zeroOrMore>
+            <ref name="model.headLike"/>
+          </zeroOrMore>
+          <oneOrMore>
+            <ref name="model.pLike"/>
+          </oneOrMore>
+          <zeroOrMore>
+            <choice>
+              <ref name="model.noteLike"/>
+              <ref name="model.biblLike"/>
+            </choice>
+          </zeroOrMore>
+        </group>
+        <zeroOrMore>
+          <choice>
+            <ref name="model.labelLike"/>
+            <ref name="model.noteLike"/>
+            <ref name="model.biblLike"/>
+          </choice>
+        </zeroOrMore>
+      </choice>
+    </element>
+  </define>
+  <define name="attlist.state" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.datable.attributes"/>
+    <ref name="tei_att.typed.attributes"/>
+    <ref name="tei_att.naming.attributes"/>
+    <optional>
+      <attribute name="calendar"/>
+    </optional>
+  </define>
+  <!-- doc:(standard values) specifies the format used when standardized date or number values are supplied. [2.3.3. The Editorial Practices Declaration 16.3.2. Declarable Elements] -->
+  <define name="stdVals">
+    <element name="stdVals">
+      <ref name="attlist.stdVals"/>
+      <oneOrMore>
+        <ref name="model.pLike"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.stdVals" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+  </define>
+  <!-- doc:contains a full street address including any name or number identifying a building as well as the name of the street or route on which it is located. [3.6.2. Addresses] -->
+  <define name="street">
+    <element name="street">
+      <ref name="attlist.street"/>
+      <ref name="macro.phraseSeq"/>
+    </element>
+  </define>
+  <define name="attlist.street" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+  </define>
+  <!-- doc:(style definition language declaration) specifies the name of the formal language in which style or renditional information is supplied elsewhere in the document. The specific version of the scheme may also be supplied. [2.3.5. The Default Style Definition Language Declaration] -->
+  <define name="styleDefDecl">
+    <element name="styleDefDecl">
+      <ref name="attlist.styleDefDecl"/>
+      <zeroOrMore>
+        <ref name="model.pLike"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.styleDefDecl" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+  </define>
+  <!-- doc:contains an overview of the available information concerning some aspect of an item or object (for example, its intellectual content, history, layout, typography etc.) as a complement or alternative to the more detailed information carried by more specific elements. [11.6. Intellectual Content] -->
+  <define name="summary">
+    <element name="summary">
+      <ref name="attlist.summary"/>
+      <ref name="macro.specialPara"/>
+    </element>
+  </define>
+  <define name="attlist.summary" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+  </define>
+  <!-- doc:(surname) contains a family (inherited) name, as opposed to a given, baptismal, or nick name. [14.2.1. Personal Names] -->
+  <define name="surname">
+    <element name="surname">
+      <ref name="attlist.surname"/>
+      <ref name="macro.phraseSeq"/>
+    </element>
+  </define>
+  <define name="attlist.surname" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.personal.attributes"/>
+    <ref name="tei_att.typed.attributes"/>
+  </define>
+  <!-- doc:(table) contains text displayed in tabular form, in rows and columns. [15.1.1. TEI Tables] -->
+  <define name="table">
+    <element name="table">
+      <ref name="attlist.table"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="model.headLike"/>
+          <ref name="model.global"/>
+        </choice>
+      </zeroOrMore>
+      <choice>
+        <oneOrMore>
+          <ref name="row"/>
+          <zeroOrMore>
+            <ref name="model.global"/>
+          </zeroOrMore>
+        </oneOrMore>
+        <oneOrMore>
+          <ref name="model.graphicLike"/>
+          <zeroOrMore>
+            <ref name="model.global"/>
+          </zeroOrMore>
+        </oneOrMore>
+      </choice>
+      <zeroOrMore>
+        <ref name="model.divBottom"/>
+        <zeroOrMore>
+          <ref name="model.global"/>
+        </zeroOrMore>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.table" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.typed.attributes"/>
+    <optional>
+      <attribute name="rows">
+        <ref name="teidata.count"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="cols">
+        <ref name="teidata.count"/>
+      </attribute>
+    </optional>
+  </define>
+  <!-- doc:(element usage) documents the usage of a specific element within a specified document. [2.3.4. The Tagging Declaration] -->
+  <define name="tagUsage">
+    <element name="tagUsage">
+      <ref name="attlist.tagUsage"/>
+      <ref name="macro.limitedContent"/>
+    </element>
+  </define>
+  <define name="attlist.tagUsage" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <attribute name="gi">
+      <ref name="teidata.name"/>
+    </attribute>
+    <optional>
+      <attribute name="occurs">
+        <ref name="teidata.count"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="withId">
+        <ref name="teidata.count"/>
+      </attribute>
+    </optional>
+  </define>
+  <!-- doc:(tagging declaration) provides detailed information about the tagging applied to a document. [2.3.4. The Tagging Declaration 2.3. The Encoding Description] -->
+  <define name="tagsDecl">
+    <element name="tagsDecl">
+      <ref name="attlist.tagsDecl"/>
+      <zeroOrMore>
+        <ref name="rendition"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="namespace"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.tagsDecl" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <optional>
+      <attribute name="partial">
+        <ref name="teidata.truthValue"/>
+      </attribute>
+    </optional>
+  </define>
+  <!-- doc:(TEI corpus) contains the whole of a TEI encoded corpus, comprising a single corpus header and one or more TEI elements, each containing a single text header and a text. [4. Default Text Structure 16.1. Varieties of Composite Text] -->
+  <define name="teiCorpus">
+    <element name="teiCorpus">
+      <ref name="attlist.teiCorpus"/>
+      <ref name="teiHeader"/>
+      <zeroOrMore>
+        <ref name="model.resource"/>
+      </zeroOrMore>
+      <oneOrMore>
+        <ref name="model.describedResource"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.teiCorpus" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.typed.attributes"/>
+    <optional>
+      <attribute name="version">
+        <ref name="teidata.version"/>
+      </attribute>
+    </optional>
+  </define>
+  <define name="attlist.teiCorpus" combine="interleave">
+    <optional>
+      <attribute name="xsi:schemaLocation"/>
+    </optional>
+  </define>
+  <!-- doc:(TEI header) supplies descriptive and declarative metadata associated with a digital resource or set of resources. [2.1.1. The TEI Header and Its Components 16.1. Varieties of Composite Text] -->
+  <define name="teiHeader">
+    <element name="teiHeader">
+      <ref name="attlist.teiHeader"/>
+      <ref name="fileDesc"/>
+      <ref name="model.teiHeaderPart_sequenceOptional"/>
+    </element>
+  </define>
+  <define name="attlist.teiHeader" combine="interleave">
+    <empty/>
+  </define>
+  <!-- doc:(term) contains a single-word, multi-word, or symbolic designation which is regarded as a technical term. [3.4.1. Terms and Glosses] -->
+  <define name="term">
+    <element name="term">
+      <ref name="attlist.term"/>
+      <ref name="macro.phraseSeq"/>
+    </element>
+  </define>
+  <define name="attlist.term" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.pointing.attributes"/>
+    <ref name="tei_att.typed.attributes"/>
+    <ref name="tei_att.canonical.attributes"/>
+    <ref name="tei_att.sortable.attributes"/>
+  </define>
+  <!-- doc:(text) contains a single text of any kind, whether unitary or composite, for example a poem or drama, a collection of essays, a novel, a dictionary, or a corpus sample. [4. Default Text Structure 16.1. Varieties of Composite Text] -->
+  <define name="text">
+    <element name="text">
+      <ref name="attlist.text"/>
+      <zeroOrMore>
+        <ref name="model.global"/>
+      </zeroOrMore>
+      <optional>
+        <ref name="front"/>
+        <zeroOrMore>
+          <ref name="model.global"/>
+        </zeroOrMore>
+      </optional>
+      <choice>
+        <ref name="body"/>
+        <ref name="group"/>
+      </choice>
+      <zeroOrMore>
+        <ref name="model.global"/>
+      </zeroOrMore>
+      <optional>
+        <ref name="back"/>
+        <zeroOrMore>
+          <ref name="model.global"/>
+        </zeroOrMore>
+      </optional>
+    </element>
+  </define>
+  <define name="attlist.text" combine="interleave">
+    <empty/>
+  </define>
+  <!-- doc:(text classification) groups information which describes the nature or topic of a text in terms of a standard classification scheme, thesaurus, etc. [2.4.3. The Text Classification] -->
+  <define name="textClass">
+    <element name="textClass">
+      <ref name="attlist.textClass"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="classCode"/>
+          <ref name="catRef"/>
+          <ref name="keywords"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.textClass" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+  </define>
+  <!-- doc:(text description) provides a description of a text in terms of its situational parameters. [16.2.1. The Text Description] -->
+  <define name="textDesc">
+    <element name="textDesc">
+      <ref name="attlist.textDesc"/>
+      <ref name="model.textDescPart_sequence"/>
+      <oneOrMore>
+        <ref name="purpose"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="attlist.textDesc" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+  </define>
+  <!-- doc:(text language) describes the languages and writing systems identified within the bibliographic work being described, rather than its description. [3.12.2.4. Imprint, Size of a Document, and Reprint Information 11.6.6. Languages and Writing Systems] -->
+  <define name="textLang">
+    <element name="textLang">
+      <ref name="attlist.textLang"/>
+      <ref name="macro.specialPara"/>
+    </element>
+  </define>
+  <define name="attlist.textLang" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <attribute name="mainLang">
+      <choice>
+        <value>fra</value>
+        <value>ita</value>
+        <value>lat</value>
+      </choice>
+    </attribute>
+    <optional>
+      <attribute name="otherLangs">
+        <choice>
+          <value>fra</value>
+          <value>ita</value>
+          <value>lat</value>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
+  <!-- doc:(title) contains a title for any kind of work. [3.12.2.2. Titles, Authors, and Editors 2.2.1. The Title Statement 2.2.5. The Series Statement] -->
+  <define name="title">
+    <element name="title">
+      <ref name="attlist.title"/>
+      <ref name="macro.paraContent"/>
+    </element>
+  </define>
+  <define name="attlist.title" combine="interleave">
+    <attribute name="xml:lang">
+      <choice>
+        <value>fra</value>
+        <value>ita</value>
+        <value>lat</value>
+      </choice>
+    </attribute>
+  </define>
+  <!-- doc:(title page) contains the title page of a text, appearing within the front or back matter. [4.6. Title Pages] -->
+  <define name="titlePage">
+    <element name="titlePage">
+      <ref name="attlist.titlePage"/>
+      <zeroOrMore>
+        <ref name="model.global"/>
+      </zeroOrMore>
+      <ref name="model.titlepagePart_sequenceOptionalRepeatable"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="model.titlepagePart_sequenceOptionalRepeatable"/>
+          <ref name="model.global"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.titlePage" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.typed.attribute.subtype"/>
+    <optional>
+      <attribute name="type"/>
+    </optional>
+  </define>
+  <!-- doc:(title part) contains a subsection or division of the title of a work, as indicated on a title page. [4.6. Title Pages] -->
+  <define name="titlePart">
+    <element name="titlePart">
+      <ref name="attlist.titlePart"/>
+      <ref name="macro.paraContent"/>
+    </element>
+  </define>
+  <define name="attlist.titlePart" combine="interleave">
+    <ref name="tei_att.global.attributes"/>
+    <ref name="tei_att.typed.attribute.subtype"/>
+    <optional>
+      <attribute name="type">
+        <choice>
+          <value>dedicace</value>
+          <value>main</value>
+          <value>sub</value>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
+  <!-- doc:(title statement) groups information about the title of a work and those responsible for its content. [2.2.1. The Title Statement 2.2. The File Description] -->
+  <define name="titleStmt">
+    <element name="titleStmt">
+      <ref name="attlist.titleStmt"/>
+      <oneOrMore>
+        <ref name="title"/>
+      </oneOrMore>
+      <zeroOrMore>
+        <ref name="model.respLike"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="attlist.titleStmt" combine="interleave">
+    <empty/>
+  </define>
+  <!-- doc:(trait) contains a description of some status or quality attributed to a person, place, or organization typically, but not necessarily, independent of the volition or action of the holder and usually not at some specific time or for a specific date range. [14.3.1. Basic Principles 14.3.2.1. Personal Characteristics] -->
+  <define name="trait">
+    <element name="trait">
+      <ref name="attlist.trait"/>
+      <zeroOrMore>
+        <ref name="precision"/>
+      </zeroOrMore>
+      <choice>
+        <oneOrMore>
+          <ref name="trait"/>
+        </oneOrMore>
+        <group>
+          <zeroOrMore>
+            <ref name="model.headLike"/>
+          </zeroOrMore>
+          <oneOrMore>
+            <ref name="model.pLike"/>
+          </oneOrMore>
+          <zeroOrMore>
+            <choice>
+              <ref name="model.noteLike"/>
+              <ref name="model.biblLike"/>
+            </choice>
+          </zeroOrMore>
+        </group>
+        <zeroOrMore>
+          <choice>
+            <ref name="model.labelLike"/>
+            <ref name="model.noteLike"/>
+            <ref name="model.biblLike"/>
+          </choice>
+        </zeroOrMore>
+      </choice>
+    </element>
+  </define>
+  <define name="attlist.trait" combine="interleave">
+    <empty/>
+  </define>
+  <!-- doc:(unclear) contains a word, phrase, or passage which cannot be transcribed with certainty because it is illegible or inaudible in the source. [12.3.3.1. Damage, Illegibility, and Supplied Text 3.5.3. Additions, Deletions, and Omissions] -->
+  <define name="unclear">
+    <element name="unclear">
+      <ref name="attlist.unclear"/>
+      <ref name="macro.paraContent"/>
+    </element>
+  </define>
+  <define name="attlist.unclear" combine="interleave">
+    <empty/>
+  </define>
+  <define name="xi.include">
+    <element name="xi:include">
+      <ref name="attlist.xi.include"/>
+      <optional>
+        <ref name="xi.fallback"/>
+      </optional>
+    </element>
+  </define>
+  <define name="attlist.xi.include" combine="interleave">
+    <optional>
+      <attribute name="href"/>
+    </optional>
+    <optional>
+      <attribute name="parse" a:defaultValue="application/xml"/>
+    </optional>
+    <optional>
+      <attribute name="xpointer"/>
+    </optional>
+    <optional>
+      <attribute name="fragid"/>
+    </optional>
+    <optional>
+      <attribute name="set-xml-id"/>
+    </optional>
+    <optional>
+      <attribute name="encoding"/>
+    </optional>
+    <optional>
+      <attribute name="accept"/>
+    </optional>
+    <optional>
+      <attribute name="accept-language"/>
+    </optional>
+  </define>
+  <define name="_DUMMY_model.certLike" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="_DUMMY_model.divGenLike" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="_DUMMY_model.egLike" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="_DUMMY_model.entryPart" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="_DUMMY_model.eventLike" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="_DUMMY_model.offsetLike" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="_DUMMY_model.segLike" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="_DUMMY_model.sourceDescPart" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="_DUMMY_model.stageLike" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="acquisition" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="additional" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="analytic" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="argument" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="catRef" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="classCode" combine="choice">
+    <notAllowed/>
+  </define>  
+  <define name="extent" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="group" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="listOrg" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="listRelation" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="meeting" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="msFrag" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="msItem" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="msItemStruct" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="msName" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="msPart" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="namespace" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="objectIdentifier" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="origin" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="pc" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="physDesc" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="precision" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="provenance" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="purpose" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="q" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="relation" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="schemaSpec" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="series" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="seriesStmt" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="setting" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="sponsor" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="supportDesc" combine="choice">
+    <notAllowed/>
+  </define>
+  <define name="xi.fallback" combine="choice">
+    <notAllowed/>
+  </define>
+  <start>
+    <choice>
+      <ref name="TEI"/>
+      <ref name="teiCorpus"/>
+    </choice>
+  </start>
+</grammar>
+<!-- end elements -->

@@ -1,24 +1,24 @@
 {
-	"editionUrls": [
-		"assets/data/pelavicino.xml"
-	],
-	"editionImagesSource": {
-		"manifest": {
-			"value": "https://www.e-codices.unifr.ch/metadata/iiif/csg-0730/manifest.json",
-			"enable": false
-		},
-		"graphics": {
-			"value": "url",
-			"enable": false
-		}
-	},
-	"imagesFolderUrls": {
-		"single": "assets/data/images/single/",
-		"double": "assets/data/images/double/"
-	},
-	"configurationUrls": {
-		"edition": "assets/config/edition_config_Pelavicino.json",
-		"ui": "assets/config/ui_config_Pelavicino.json",
-		"editorialConventions": "assets/config/editorial_conventions_config.json"
-	}
+  "editionUrls": [
+      "assets/data/edition/Huret_RegleDescrireColomnes.xml"
+  ],
+  "editionImagesSource": {
+      "manifest": {
+          "value": "https://gallica.bnf.fr/iiif/ark:/12148/bpt6k1509638p/manifest.json",
+          "enable": true
+      },
+      "graphics": {
+          "value": "url",
+          "enable": false
+      }
+  },
+  "imagesFolderUrls": {
+      "single": "assets/data/images/single/Huret_RegleDescrireColomnes/",
+      "double": "assets/data/images/double/"
+  },
+  "configurationUrls": {
+      "edition": "assets/config/edition_config_Huret.json",
+      "ui": "assets/config/ui_config_Huret.json",
+      "editorialConventions": "assets/config/editorial_conventions_config.json"
+  }
 }
