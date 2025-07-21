@@ -14,7 +14,7 @@
          </sourceDesc>
       </fileDesc>
       <profileDesc>
-         <xi:include href="IndexPersonnes.xml" xpointer="element(/1/1)"/>
+         <xi:include href="IndexPersonnesComplet.xml" xpointer="element(/1/1)"/>
          <xi:include href="IndexLieux.xml" xpointer="element(/1/1)"/>
       </profileDesc>
    </teiHeader>
